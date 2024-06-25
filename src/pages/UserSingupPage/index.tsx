@@ -1,6 +1,9 @@
 import { ChangeEvent, useState } from "react";
 import "./style.css";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import AuthService from "@/services/AuthService";
+import { IUserSignup } from "@/commons/interfaces";
+import { BotaoAcesso } from "@/components/BotaoAcesso";
 
 export function UserSingupPage() {
   const [form, setForm] = useState({
@@ -19,16 +22,23 @@ export function UserSingupPage() {
     telefone: "",
   });
 
+  const navigate = useNavigate();
+  const [apiPendente, setApiPendente] = useState(false);
+  const [apiError, setApiError] = useState("");
+  const [apiSuccess, setApiSuccess] = useState("");
+
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
 
     setError((prev) => ({ ...prev, [name]: undefined }));
+    setApiError("");
   };
 
-  const onClickSingup = () => {
+  const onClickSingup = async () => {
     event?.preventDefault();
-    const user = {
+    setApiPendente(true);
+    const user: IUserSignup = {
       username: form.username,
       email: form.email,
       password: form.password,
@@ -36,17 +46,20 @@ export function UserSingupPage() {
       telefone: form.telefone,
     };
 
-    axios
-      .post("http://localhost:8080/usuario", user)
-      .then((response) => {
-        console.log("cadastrado com sucesso" + response.data);
-      })
-      .catch((error) => {
-        if (error.response && error.response.data.validationErrors) {
-          console.log("errro ao cadastrar " + error.response.data.message);
-          setError(error.response.data.validationErrors);
-        }
-      });
+    const response = await AuthService.signup(user);
+    if (response.status === 200 || response.status === 201) {
+      setApiSuccess("Cadastrado com sucesso");
+      setTimeout(() => {
+        setApiPendente(false);
+        navigate("/login");
+      }, 2000);
+    } else {
+      if (response.data.validationErrors) {
+        setApiError("Falha ao efetuar o cadastro");
+        setError(response.data.validationErrors);
+      }
+      setApiPendente(false);
+    }
   };
 
   return (
@@ -108,7 +121,6 @@ export function UserSingupPage() {
                       onChange={onChange}
                     />
                   </div>
-                  //precisa validar se as senhas sao iguais
                   <div className="form-group">
                     <label htmlFor="confirmar-senha">Confirmar Senha</label>
                     <input
@@ -151,13 +163,17 @@ export function UserSingupPage() {
                       onChange={onChange}
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block"
+                  {apiError && (
+                    <div className="alert alert-danger">{apiError}</div>
+                  )}
+                  {apiSuccess && (
+                    <div className="alert alert-success">{apiSuccess}</div>
+                  )}
+                  <BotaoAcesso
                     onClick={onClickSingup}
-                  >
-                    Cadastrar
-                  </button>
+                    disabled={apiPendente}
+                    text="Cadastrar"
+                  />
                 </form>
               </div>
             </div>

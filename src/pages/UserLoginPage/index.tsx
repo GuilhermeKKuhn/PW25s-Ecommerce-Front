@@ -1,6 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import "./style.css";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { IUserLogin } from "@/commons/interfaces";
+import AuthService from "@/services/AuthService";
 
 export function UserLoginPage() {
   const [form, setForm] = useState({
@@ -8,30 +10,53 @@ export function UserLoginPage() {
     password: "",
   });
 
+  const navigate = useNavigate(); //usado para redirecionar para outra rota
+  const [apiError, setapiError] = useState("");
+  const [apiSuccess, setapiSuccess] = useState("");
+  const [apiPendente, setApiPendente] = useState(false);
+
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    setapiError("");
   };
 
-  const onClickLogin = () => {
+  const onClickLogin = async () => {
+    setApiPendente(true);
     event?.preventDefault();
-    const user = {
+    const user: IUserLogin = {
       username: form.username,
       password: form.password,
     };
 
-    axios
-      .post("http://localhost:8080/login", user)
-      .then((response) => {
-        console.log("Login efetuado com sucesso" + response.data);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(
-            "Falha ao efetuar o login " + error.response.data.message
-          );
-        }
-      });
+    const response = await AuthService.login(user);
+    if (response.status === 200 || response.status === 201) {
+      setapiSuccess("Login efetuado com sucesso");
+      setTimeout(() => {
+        setApiPendente(false);
+        navigate("/"); //redireciona para a pagina inicial
+      }, 2000);
+    } else {
+      setapiError("Falha ao efetuar o login ");
+      if (response.data.validationErrors) {
+        console.log("Falha ao efetuar o login " + response.data.message);
+      }
+      setApiPendente(false);
+    }
+
+    // axios
+    //   .post("http://localhost:8080/login", user)
+    //   .then((response) => {
+    //     console.log("Login efetuado com sucesso" + response.data);
+    //     navigate("/"); //redireciona para a pagina inicial
+    //   })
+    //   .catch((error) => {
+    //     if (error.response) {
+    //       console.log(
+    //         "Falha ao efetuar o login " + error.response.data.message
+    //       );
+    //     }
+    //   });
   };
 
   return (
@@ -67,10 +92,21 @@ export function UserLoginPage() {
                       onChange={onChange}
                     />
                   </div>
+                  {apiError && (
+                    <div className="alert alert-danger" role="alert">
+                      {apiError}
+                    </div>
+                  )}
+                  {apiSuccess && (
+                    <div className="alert alert-success" role="alert">
+                      {apiSuccess}
+                    </div>
+                  )}
                   <button
                     type="submit"
                     className="btn btn-primary btn-block"
                     onClick={onClickLogin}
+                    disabled={apiPendente}
                   >
                     Entrar
                   </button>
