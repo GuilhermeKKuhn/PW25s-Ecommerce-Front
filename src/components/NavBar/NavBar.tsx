@@ -1,10 +1,21 @@
-import React from 'react';
-import { chakra, Image, Flex, HStack, Button, Box, IconButton, VStack, CloseButton, useColorModeValue, useDisclosure, VisuallyHidden } from "@chakra-ui/react";
+import React from "react";
+import {
+  chakra,
+  Image,
+  Flex,
+  HStack,
+  Button,
+  Box,
+  IconButton,
+  VStack,
+  CloseButton,
+  useColorModeValue,
+  useDisclosure,
+  VisuallyHidden,
+} from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { UserLoginPage } from '../UserLoginPage';
 
-
-const homePage = () => {
+const NavBar = () => {
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
   return (
@@ -27,7 +38,7 @@ const homePage = () => {
               display="flex"
               alignItems="center"
             >
-              <Image src="icon.svg" color="gray.500" alt="Logo Reliquario"/>
+              <Image src="icon.svg" color="gray.500" alt="Logo Reliquario" />
               <VisuallyHidden>Reliquário</VisuallyHidden>
             </chakra.a>
             <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
@@ -118,5 +129,4 @@ const homePage = () => {
   );
 };
 
-
-export default homePage;
+export default NavBar;
