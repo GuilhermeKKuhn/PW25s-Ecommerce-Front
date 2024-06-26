@@ -107,7 +107,7 @@ const homePage = () => {
                   Company
                 </Button>
                 <Button w="full" variant="ghost">
-                  Sign in
+                  Sign ingit
                 </Button>
               </VStack>
             </Box>
