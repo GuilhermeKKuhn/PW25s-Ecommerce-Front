@@ -3,6 +3,7 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { IUserLogin } from "@/commons/interfaces";
 import AuthService from "@/services/AuthService";
+import { Button } from "@chakra-ui/react";
 
 export function UserLoginPage() {
   const [form, setForm] = useState({
@@ -77,7 +78,7 @@ export function UserLoginPage() {
                       className="form-control"
                       id="username"
                       name="username"
-                      placeholder="Digite seu email"
+                      placeholder="Digite seu usuario"
                       onChange={onChange}
                     />
                   </div>
@@ -102,14 +103,13 @@ export function UserLoginPage() {
                       {apiSuccess}
                     </div>
                   )}
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block"
+                  <Button
+                    colorScheme="blue"
                     onClick={onClickLogin}
                     disabled={apiPendente}
                   >
                     Entrar
-                  </button>
+                  </Button>
                 </form>
               </div>
             </div>
