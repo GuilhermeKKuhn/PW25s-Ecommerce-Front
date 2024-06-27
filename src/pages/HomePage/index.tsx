@@ -1,11 +1,10 @@
 import CardProduto from "@/components/Cards/Card";
 import NavBar from "@/components/NavBar/NavBar";
-import { Slider } from "@chakra-ui/react";
+import Slider from "@/components/Slider/Slider";
 
 export function HomePage() {
   return (
     <>
-      <Slider />
       <NavBar />
       <div className="container">
         <div>{<CardProduto />}</div>

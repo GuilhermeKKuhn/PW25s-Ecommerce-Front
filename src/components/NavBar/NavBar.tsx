@@ -38,12 +38,10 @@ const NavBar = () => {
               display="flex"
               alignItems="center"
             >
-              <Image src="icon.svg" color="gray.500" alt="Logo Reliquario" />
+              <Image src="aquario.svg" boxSize="60px"
+              objectFit="contain" color="gray.500" alt="Logo Reliquario" />
               <VisuallyHidden>Reliquário</VisuallyHidden>
             </chakra.a>
-            <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
-              Choc
-            </chakra.h1>
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
