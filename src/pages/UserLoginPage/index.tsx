@@ -62,57 +62,49 @@ export function UserLoginPage() {
 
   return (
     <>
-      <div className="container mt-5">
-        <div className="row justify-content-center">
-          <div className="col-md-4">
-            <div className="card">
-              <div className="card-header bg-primary text-white text-center">
-                <h4>Login</h4>
+      <div className="background">
+        <div className="container">
+          <div className="Login-box">
+            <h4>Login</h4>
+            <form onSubmit={onClickLogin}>
+              <div className="input-field">
+                <label color="white" htmlFor="username">Usuário</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Digite seu usuário"
+                  onChange={onChange}
+                />
               </div>
-              <div className="card-body">
-                <form>
-                  <div className="form-group">
-                    <label htmlFor="usuario">Usuario</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="username"
-                      name="username"
-                      placeholder="Digite seu usuario"
-                      onChange={onChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Senha</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      name="password"
-                      placeholder="Digite sua senha"
-                      onChange={onChange}
-                    />
-                  </div>
-                  {apiError && (
-                    <div className="alert alert-danger" role="alert">
-                      {apiError}
-                    </div>
-                  )}
-                  {apiSuccess && (
-                    <div className="alert alert-success" role="alert">
-                      {apiSuccess}
-                    </div>
-                  )}
-                  <Button
-                    colorScheme="blue"
-                    onClick={onClickLogin}
-                    disabled={apiPendente}
-                  >
-                    Entrar
-                  </Button>
-                </form>
+              <div className="input-field">
+                <label htmlFor="password">Senha</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Digite sua senha"
+                  onChange={onChange}
+                />
               </div>
-            </div>
+              {apiError && (
+                <div className="alert alert-danger" role="alert">
+                  {apiError}
+                </div>
+              )}
+              {apiSuccess && (
+                <div className="alert alert-success" role="alert">
+                  {apiSuccess}
+                </div>
+              )}
+              <Button
+                colorScheme="gray"
+                type="submit"
+                isLoading={apiPendente}
+              >
+                Entrar
+              </Button>
+            </form>
           </div>
         </div>
       </div>
