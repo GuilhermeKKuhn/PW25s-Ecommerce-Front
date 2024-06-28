@@ -1,3 +1,8 @@
+/*Quando for estilizar a nav, precisa adicionar o logo e o nome, no lugar da palavra carrinho coloca um carrinho ou sla, algo que tu ache legal
+ai tem duas questoes, quando ta logado ele aparece o nome e um circulo que teria que adicionar aqueles avatarzinho de perfil, 
+pensei que quando ele clicasse ali devia mandar pra tela de perfil de usuario tambem mostra o sair so quando ta logado, se nao esta logado aparece entrar/cadastrar
+ve ai a maneira que fique mais bonita essa parte e estiliza*/
+
 import React from "react";
 import {
   chakra,
@@ -15,12 +20,16 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
 import AuthService from "@/services/AuthService";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
+  const navigate = useNavigate();
+  const isAuthenticated = AuthService.isAuthenticated();
   const OnClickLogout = () => {
     AuthService.logout();
+    navigate("/");
   };
 
   return (
@@ -63,11 +72,38 @@ const NavBar = () => {
                 md: "inline-flex",
               }}
             >
-              <Button variant="ghost">Home</Button>
-              <Button variant="ghost">Produtos</Button>
-              <Button variant="ghost">Sobre nós</Button>
-              <Button variant="ghost">Entrar/Cadastrar</Button>
-              <Button variant="ghost">Sair</Button>
+              <NavLink to="/">
+                <Button variant="ghost">Home</Button>
+              </NavLink>
+              <NavLink to="/produtos">
+                <Button variant="ghost">Produtos</Button>
+              </NavLink>
+              <NavLink to="/sobre">
+                <Button variant="ghost">Carrinho</Button>
+              </NavLink>
+              {isAuthenticated ? (
+                <>
+                  {/*falta verifica para puxar o nome do fdp*/}
+                  <Button variant="ghost">{"nome aqui"}</Button>
+                  <Box boxSize="36px" borderRadius="full" bg="gray.200">
+                    <Image
+                      boxSize="24px"
+                      borderRadius="full"
+                      src={"teste"}
+                      alt="Perfil"
+                    />
+                  </Box>
+                </>
+              ) : (
+                <NavLink to="/login">
+                  <Button variant="ghost">Entrar/Cadastrar</Button>
+                </NavLink>
+              )}
+              {isAuthenticated && (
+                <Button variant="ghost" onClick={OnClickLogout}>
+                  Sair
+                </Button>
+              )}
             </HStack>
             <Button colorScheme="brand" size="sm">
               Get Started
@@ -113,22 +149,6 @@ const NavBar = () => {
                   aria-label="Close menu"
                   onClick={mobileNav.onClose}
                 />
-
-                <Button w="full" variant="ghost">
-                  Features
-                </Button>
-                <Button w="full" variant="ghost">
-                  Pricing
-                </Button>
-                <Button w="full" variant="ghost">
-                  Blog
-                </Button>
-                <Button w="full" variant="ghost">
-                  Company
-                </Button>
-                <Button w="full" variant="ghost">
-                  Sign ingit
-                </Button>
               </VStack>
             </Box>
           </HStack>
