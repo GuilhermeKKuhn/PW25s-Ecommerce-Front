@@ -10,12 +10,11 @@ export function BaseRoutes() {
       {/*rotas publicas*/}
       <Route path="/login" element={<UserLoginPage />} />
       <Route path="/signup" element={<UserSingupPage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/home" element={<HomePage />} />
 
       {/*rotas privadas*/}
-      <Route element={<AuthenticatedRoutes />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-      </Route>
+      <Route element={<AuthenticatedRoutes />}></Route>
     </Routes>
   );
 }

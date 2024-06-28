@@ -14,10 +14,15 @@ import {
   VisuallyHidden,
 } from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
+import AuthService from "@/services/AuthService";
 
 const NavBar = () => {
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
+  const OnClickLogout = () => {
+    AuthService.logout();
+  };
+
   return (
     <React.Fragment>
       <chakra.header
@@ -38,8 +43,13 @@ const NavBar = () => {
               display="flex"
               alignItems="center"
             >
-              <Image src="aquario.svg" boxSize="60px"
-              objectFit="contain" color="gray.500" alt="Logo Reliquario" />
+              <Image
+                src="aquario.png"
+                boxSize="60px"
+                objectFit="contain"
+                color="gray.500"
+                alt="Logo Reliquario"
+              />
               <VisuallyHidden>Reliquário</VisuallyHidden>
             </chakra.a>
           </Flex>
@@ -56,7 +66,8 @@ const NavBar = () => {
               <Button variant="ghost">Home</Button>
               <Button variant="ghost">Produtos</Button>
               <Button variant="ghost">Sobre nós</Button>
-              <Button variant="ghost">Sign in</Button>
+              <Button variant="ghost">Entrar/Cadastrar</Button>
+              <Button variant="ghost">Sair</Button>
             </HStack>
             <Button colorScheme="brand" size="sm">
               Get Started
