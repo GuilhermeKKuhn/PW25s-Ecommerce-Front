@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { UserLoginPage } from "@/pages/UserLoginPage";
 import { UserSingupPage } from "@/pages/UserSingupPage";
 import { HomePage } from "@/pages/HomePage";
+import { AuthenticatedRoutes } from "../AuthenticatedRoutes";
 
 export function BaseRoutes() {
   return (
@@ -11,7 +12,10 @@ export function BaseRoutes() {
       <Route path="/signup" element={<UserSingupPage />} />
 
       {/*rotas privadas*/}
-      <Route path="/" element={<HomePage />} />
+      <Route element={<AuthenticatedRoutes />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
+      </Route>
     </Routes>
   );
 }
