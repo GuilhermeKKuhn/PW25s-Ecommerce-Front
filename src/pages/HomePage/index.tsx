@@ -1,6 +1,7 @@
 import CardProduto from "@/components/Cards/Card";
 import NavBar from "@/components/NavBar/NavBar";
 import Slider from "@/components/Slider/Slider";
+import Footer from "@/components/Footer/footer";
 
 export function HomePage() {
   return (
@@ -15,6 +16,7 @@ export function HomePage() {
         <div>{<CardProduto />}</div>
         <div>{<CardProduto />}</div>
       </div>
+      <Footer />
     </>
   );
 }
