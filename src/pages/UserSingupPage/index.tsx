@@ -64,16 +64,15 @@ export function UserSingupPage() {
 
   return (
     <>
-      <div className="container mt-5">
-        <div className="row justify-content-center">
-          <div className="col-md-6">
-            <div className="card">
-              <div className="card-header bg-primary text-white text-center">
+    <div className="background">
+    <div className="container">
+        <div className="cadastro-box">
+          <div>
+            <div>
                 <h4>Cadastro</h4>
-              </div>
-              <div className="card-body">
+              <div>
                 <form>
-                  <div className="form-group">
+                  <div className="signup-field">
                     <label htmlFor="nome">Nome Completo</label>
                     {error.username && (
                       <div className="invalid-feedback">{error.username}</div>
@@ -89,7 +88,7 @@ export function UserSingupPage() {
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="signup-field">
                     <label htmlFor="email">Email</label>
                     {error.email && (
                       <div className="invalid-feedback">{error.email}</div>
@@ -105,7 +104,7 @@ export function UserSingupPage() {
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="signup-field">
                     <label htmlFor="senha">Senha</label>
                     {error.password && (
                       <div className="invalid-feedback">{error.password}</div>
@@ -121,7 +120,7 @@ export function UserSingupPage() {
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="signup-field">
                     <label htmlFor="confirmar-senha">Confirmar Senha</label>
                     <input
                       type="password"
@@ -131,7 +130,7 @@ export function UserSingupPage() {
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="signup-field">
                     <label htmlFor="endereco">Endereço</label>
                     {error.endereco && (
                       <div className="invalid-feedback">{error.endereco}</div>
@@ -147,7 +146,7 @@ export function UserSingupPage() {
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="signup-field">
                     <label htmlFor="telefone">Telefone</label>
                     {error.telefone && (
                       <div className="invalid-feedback">{error.telefone}</div>
@@ -180,6 +179,7 @@ export function UserSingupPage() {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }

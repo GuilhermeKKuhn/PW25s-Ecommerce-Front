@@ -11,20 +11,37 @@ body, html {
 }
 
 .background{
-  background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?cs=srgb&dl=pexels-eberhardgross-691668.jpg&fm=jpg");
+  background-image: url("https://images.pexels.com/photos/3014826/pexels-photo-3014826.jpeg?cs=srgb&dl=pexels-technobulka-3014826.jpg&fm=jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-
+/* 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   width: 100%;  
+} */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
 }
 
+.login-box{
+  position: relative;
+  width: 450px;
+  padding: 40px;
+  border-radius: 40px;
+  background-color: rgba(0, 0, 0, 0.23);
+  overflow: hidden; 
+  backdrop-filter: blur(0.5px);
+}
 
 .input-field {
   position: relative;
@@ -38,50 +55,20 @@ body, html {
   height: 100%;
   background-color: transparent;
   outline: none;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.159);
   border-radius: 40px;
   font-size: 16px;
   color: #fff;
   padding: 0 25px;
 }
 
+.input-field label{
+  color: #fff;
+  padding-top: 10px;
+}
+
 .input-field input::placeholder {
-  color: #fff;
-}
-
-.input-field .icon {
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #fff;
-}
-
-.recall-forget {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14.5px;
-  margin: -15px 0 15px;
-}
-
-.recall-forget label {
-  color: #fff;
-}
-
-.recall-forget input {
-  margin-right: 5px;
-}
-
-.recall-forget a,
-.signup-link p a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.recall-forget a:hover,
-.signup-link p a:hover {
-  text-decoration: underline;
+  color: #ffffffc2;
 }
 
 .login-box button {
@@ -98,10 +85,7 @@ body, html {
   text-shadow: none;
 }
 
-.signup-link {
-  font-size: 15px;
-  text-align: center;
-  margin: 20px 0 10px;
-  text-shadow: none;
+.login-box h4{
   color: #fff;
+  text-align: center;
 }

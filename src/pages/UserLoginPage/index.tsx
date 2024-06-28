@@ -64,11 +64,11 @@ export function UserLoginPage() {
     <>
       <div className="background">
         <div className="container">
-          <div className="Login-box">
+          <div className="login-box">
             <h4>Login</h4>
             <form onSubmit={onClickLogin}>
               <div className="input-field">
-                <label color="white" htmlFor="username">Usuário</label>
+                <label htmlFor="username">Usuário</label>
                 <input
                   type="text"
                   id="username"
@@ -98,6 +98,7 @@ export function UserLoginPage() {
                 </div>
               )}
               <Button
+                py={4}
                 colorScheme="gray"
                 type="submit"
                 isLoading={apiPendente}
