@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "@/services/AuthService";
 import { IUserSignup } from "@/commons/interfaces";
 import { BotaoAcesso } from "@/components/BotaoAcesso";
+import { Button } from "@chakra-ui/react";
 
 export function UserSingupPage() {
   const [form, setForm] = useState({
@@ -168,11 +169,15 @@ export function UserSingupPage() {
                   {apiSuccess && (
                     <div className="alert alert-success">{apiSuccess}</div>
                   )}
-                  <BotaoAcesso
-                    onClick={onClickSingup}
-                    disabled={apiPendente}
-                    text="Cadastrar"
-                  />
+                  <Button
+                  className="botao"
+                  py={4}
+                  colorScheme="gray"
+                  type="submit"
+                  isLoading={apiPendente}
+                  >
+                  Cadastrar
+                  </Button>
                 </form>
               </div>
             </div>

@@ -16,14 +16,6 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
 }
-/* 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;  
-} */
 
 .container {
   display: flex;
@@ -38,7 +30,7 @@ body, html {
   width: 450px;
   padding: 40px;
   border-radius: 40px;
-  background-color: rgba(0, 0, 0, 0.23);
+  background-color: rgba(0, 0, 0, 0.45);
   overflow: hidden; 
   backdrop-filter: blur(0.5px);
 }
@@ -61,6 +53,7 @@ body, html {
   color: #fff;
   padding: 0 25px;
 }
+
 
 .input-field label{
   color: #fff;
@@ -88,4 +81,62 @@ body, html {
 .login-box h4{
   color: #fff;
   text-align: center;
+}
+
+.botao{
+  margin-top: 40px;
+}
+
+.recup {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin-top: 40px;
+}
+
+.recup label {
+  color: #fff;
+}
+
+.recup h3{
+  font-size: 14.5px;
+  color:#fff;
+  margin-right: 110px;
+}
+
+.check{
+  margin-left: 10px;
+}
+
+.recup input {
+  margin-right: 2px;
+}
+
+.recup a,
+.signup-link p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.recup a:hover,
+.signup-link p :hover {
+  text-decoration: underline;
+}
+
+.login-box .signup-link {
+  font-size: 15px;
+  text-align: center;
+  margin: 20px 0 10px;
+  text-shadow: none;
+}
+
+.dir-cadastro{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  color: #fffffff0;
+}
+
+.dir-cadastro a:hover {
+  text-decoration: underline;
 }

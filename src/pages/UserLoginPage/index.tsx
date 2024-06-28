@@ -87,6 +87,13 @@ export function UserLoginPage() {
                   onChange={onChange}
                 />
               </div>
+              <div className="recup">
+                <label>
+                  <input type="checkbox" className="check"/>
+                </label>
+                <h3>Lembre de mim</h3>
+                <a href="#">Esqueceu a senha?</a>
+              </div>
               {apiError && (
                 <div className="alert alert-danger" role="alert">
                   {apiError}
@@ -98,6 +105,7 @@ export function UserLoginPage() {
                 </div>
               )}
               <Button
+                className="botao"
                 py={4}
                 colorScheme="gray"
                 type="submit"
@@ -105,6 +113,9 @@ export function UserLoginPage() {
               >
                 Entrar
               </Button>
+              <div className="dir-cadastro">
+                Não tem cadastro?<a href="#">cadastre-se</a>
+              </div>
             </form>
           </div>
         </div>
