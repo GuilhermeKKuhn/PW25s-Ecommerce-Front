@@ -6,6 +6,7 @@ export function HomePage() {
   return (
     <>
       <NavBar />
+      <Slider />
       <div className="container">
         <div>{<CardProduto />}</div>
         <div>{<CardProduto />}</div>
