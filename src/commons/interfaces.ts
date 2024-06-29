@@ -19,3 +19,12 @@ export interface IUser {
   endereco: string;
   telefone: string;
 }
+
+export interface IProduct {
+  id: string;
+  nome: string;
+  descricao: string;
+  preco: number;
+  urlImage: string;
+  categoria: string;
+}

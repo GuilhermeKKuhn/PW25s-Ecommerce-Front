@@ -50,13 +50,6 @@ const NavBar = () => {
     fetchUser();
   }, [isAuthenticated]);
 
-  const getUser = async () => {
-    const response = await UserService.getUser();
-    if (response.status === 200) {
-      setData(response.data);
-    }
-  };
-
   return (
     <React.Fragment>
       <chakra.header

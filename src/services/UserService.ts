@@ -1,7 +1,6 @@
-import { IUser } from "@/commons/interfaces";
 import { api } from "@/lib/axios";
 
-const getUser = async (user: IUser) => {
+const getUser = async () => {
   let response;
   try {
     response = await api.get("/usuario/me");
