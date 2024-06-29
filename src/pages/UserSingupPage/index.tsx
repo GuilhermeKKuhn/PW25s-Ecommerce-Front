@@ -3,7 +3,6 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import AuthService from "@/services/AuthService";
 import { IUserSignup } from "@/commons/interfaces";
-import { BotaoAcesso } from "@/components/BotaoAcesso";
 import { Button } from "@chakra-ui/react";
 
 export function UserSingupPage() {

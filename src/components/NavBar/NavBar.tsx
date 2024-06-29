@@ -17,7 +17,9 @@ import {
   useDisclosure,
   VisuallyHidden,
 } from "@chakra-ui/react";
+
 import { AiOutlineMenu } from "react-icons/ai";
+import { FaShoppingCart } from "react-icons/fa";
 import AuthService from "@/services/AuthService";
 import UserService from "@/services/UserService";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -25,7 +27,7 @@ import { IUser } from "@/commons/interfaces";
 import React, { useEffect, useState } from "react";
 
 const NavBar = () => {
-  const bg = useColorModeValue("white", "gray.800");
+  const bg = useColorModeValue("rgb(54,54,54)", "rgba(54,54,54)");
   const mobileNav = useDisclosure();
   const navigate = useNavigate();
   const isAuthenticated = AuthService.isAuthenticated();
@@ -59,7 +61,7 @@ const NavBar = () => {
           base: 2,
           sm: 4,
         }}
-        py={4}
+        py={2}
         shadow="md"
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
@@ -71,10 +73,9 @@ const NavBar = () => {
               alignItems="center"
             >
               <Image
-                src="aquario.png"
-                boxSize="60px"
+                src="teste2.png"
+                boxSize="40px"
                 objectFit="contain"
-                color="gray.500"
                 alt="Logo Reliquario"
               />
               <VisuallyHidden>Reliquário</VisuallyHidden>
@@ -82,22 +83,28 @@ const NavBar = () => {
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
-              spacing={1}
+              spacing={4}
               mr={1}
-              color="brand.500"
+              color="white"
               display={{
                 base: "none",
                 md: "inline-flex",
               }}
             >
               <NavLink to="/">
-                <Button variant="ghost">Home</Button>
+                <Button variant="ghost" color="white">
+                  Home
+                </Button>
               </NavLink>
               <NavLink to="/produtos">
-                <Button variant="ghost">Produtos</Button>
+                <Button variant="ghost" color="white">
+                  Produtos
+                </Button>
               </NavLink>
-              <NavLink to="/sobre">
-                <Button variant="ghost">Carrinho</Button>
+              <NavLink to="/carrinho">
+                <Button variant="ghost" color="white">
+                  <FaShoppingCart />
+                </Button>
               </NavLink>
               {data && isAuthenticated ? (
                 <>
@@ -105,27 +112,28 @@ const NavBar = () => {
                   <Button variant="ghost">{data.username}</Button>
                   <Box boxSize="36px" borderRadius="full" bg="gray.200">
                     <Image
-                      boxSize="24px"
+                      boxSize="36px"
                       borderRadius="full"
-                      src={"teste"}
+                      src={"avatar_url"}
                       alt="Perfil"
+                      onClick={() => navigate("/perfil")}
+                      cursor="pointer"
                     />
                   </Box>
                 </>
               ) : (
                 <NavLink to="/login">
-                  <Button variant="ghost">Entrar/Cadastrar</Button>
+                  <Button variant="ghost" color="white">
+                    Entrar/Cadastrar
+                  </Button>
                 </NavLink>
               )}
               {isAuthenticated && (
-                <Button variant="ghost" onClick={OnClickLogout}>
+                <Button variant="ghost" color="white" onClick={OnClickLogout}>
                   Sair
                 </Button>
               )}
             </HStack>
-            <Button colorScheme="brand" size="sm">
-              Get Started
-            </Button>
             <Box
               display={{
                 base: "inline-flex",
@@ -139,10 +147,7 @@ const NavBar = () => {
                 }}
                 aria-label="Open menu"
                 fontSize="20px"
-                color="gray.800"
-                _dark={{
-                  color: "inherit",
-                }}
+                color="white"
                 variant="ghost"
                 icon={<AiOutlineMenu />}
                 onClick={mobileNav.onOpen}
@@ -166,7 +171,52 @@ const NavBar = () => {
                 <CloseButton
                   aria-label="Close menu"
                   onClick={mobileNav.onClose}
+                  color="white"
                 />
+                <NavLink to="/">
+                  <Button variant="ghost" color="white" w="full">
+                    Home
+                  </Button>
+                </NavLink>
+                <NavLink to="/produtos">
+                  <Button variant="ghost" color="white" w="full">
+                    Produtos
+                  </Button>
+                </NavLink>
+                <NavLink to="/carrinho">
+                  <Button variant="ghost" color="white" w="full">
+                    <FaShoppingCart />
+                  </Button>
+                </NavLink>
+                {isAuthenticated ? (
+                  <>
+                    <Button variant="ghost" color="white" w="full">
+                      {"Nome do Usuário"}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      color="white"
+                      w="full"
+                      onClick={() => navigate("/perfil")}
+                    >
+                      Perfil
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      color="white"
+                      w="full"
+                      onClick={OnClickLogout}
+                    >
+                      Sair
+                    </Button>
+                  </>
+                ) : (
+                  <NavLink to="/login">
+                    <Button variant="ghost" color="white" w="full">
+                      Entrar/Cadastrar
+                    </Button>
+                  </NavLink>
+                )}
               </VStack>
             </Box>
           </HStack>

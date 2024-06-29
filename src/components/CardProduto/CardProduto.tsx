@@ -1,8 +1,7 @@
 //esse card de produto é só pra ser padrao pra todos os cards serem assim, se for alterar vai ser somente o estilo do card nao como eles vao aparecer na pagina,
 //isso é no ListaProduto
 
-import { Flex, Box, chakra, Image, HStack } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
+import { Flex, Box, chakra, Image, Heading, Button } from "@chakra-ui/react";
 import { IProduct } from "@/commons/interfaces";
 
 const CardProduto = ({ produto }: { produto: IProduct }) => {
@@ -40,8 +39,11 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
         </Box>
 
         <Box
-          w={{ base: "100%", md: "50%" }}
-          p={6}
+          w={2 / 3}
+          p={{
+            base: 4,
+            md: 4,
+          }}
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
@@ -68,34 +70,12 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
             {produto.descricao}
           </chakra.p>
 
-          <HStack spacing={1} mt={2}>
-            <StarIcon
-              color="gray.700"
-              _dark={{
-                color: "gray.300",
-              }}
-            />
-            <StarIcon
-              color="gray.700"
-              _dark={{
-                color: "gray.300",
-              }}
-            />
-            <StarIcon
-              color="gray.700"
-              _dark={{
-                color: "gray.300",
-              }}
-            />
-            <StarIcon color="gray.500" />
-            <StarIcon color="gray.500" />
-          </HStack>
+          <Heading color={"gray.900"} fontSize={"sm"}>
+            {produto.preco}.
+          </Heading>
 
           <Flex mt={3} justifyContent="flex-end">
-            <chakra.h3 color="white" fontWeight="bold" fontSize="lg">
-              {produto.preco}
-            </chakra.h3>
-            <chakra.button
+            <Button
               px={4}
               py={2}
               bg="yellow.400"
@@ -112,7 +92,7 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
               }}
             >
               Adicionar no carrinho
-            </chakra.button>
+            </Button>
           </Flex>
         </Box>
       </Flex>
