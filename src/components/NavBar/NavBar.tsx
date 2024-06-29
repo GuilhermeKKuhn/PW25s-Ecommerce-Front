@@ -1,3 +1,8 @@
+/*Quando for estilizar a nav, precisa adicionar o logo e o nome, no lugar da palavra carrinho coloca um carrinho ou sla, algo que tu ache legal
+ai tem duas questoes, quando ta logado ele aparece o nome e um circulo que teria que adicionar aqueles avatarzinho de perfil, 
+pensei que quando ele clicasse ali devia mandar pra tela de perfil de usuario tambem mostra o sair so quando ta logado, se nao esta logado aparece entrar/cadastrar
+ve ai a maneira que fique mais bonita essa parte e estiliza*/
+
 import React from "react";
 import {
   chakra,
@@ -17,16 +22,42 @@ import {
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import AuthService from "@/services/AuthService";
+import UserService from "@/services/UserService";
 import { NavLink, useNavigate } from "react-router-dom";
+import { IUser } from "@/commons/interfaces";
+import React, { useEffect, useState } from "react";
 
 const NavBar = () => {
   const bg = useColorModeValue("rgb(54,54,54)", "rgba(54,54,54)");
   const mobileNav = useDisclosure();
   const navigate = useNavigate();
   const isAuthenticated = AuthService.isAuthenticated();
+  const [data, setData] = useState<IUser>({} as IUser);
+
   const OnClickLogout = () => {
     AuthService.logout();
     navigate("/");
+  };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (isAuthenticated) {
+        try {
+          const response = await UserService.getUser();
+          setData(response);
+        } catch (error) {
+          console.error("Erro ao buscar usuário:", error);
+        }
+      }
+    };
+    fetchUser();
+  }, [isAuthenticated]);
+
+  const getUser = async () => {
+    const response = await UserService.getUser();
+    if (response.status === 200) {
+      setData(response.data);
+    }
   };
 
   return (
@@ -83,11 +114,10 @@ const NavBar = () => {
                   <FaShoppingCart />
                 </Button>
               </NavLink>
-              {isAuthenticated ? (
+              {data && isAuthenticated ? (
                 <>
-                  <Button variant="ghost" color="white">
-                    {"Nome do Usuário"}
-                  </Button>
+                  {/*falta verifica para puxar o nome do fdp*/}
+                  <Button variant="ghost">{"nome aqui"}</Button>
                   <Box boxSize="36px" borderRadius="full" bg="gray.200">
                     <Image
                       boxSize="36px"
