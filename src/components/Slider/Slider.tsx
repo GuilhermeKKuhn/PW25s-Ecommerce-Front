@@ -4,28 +4,28 @@ import { useEffect, useState } from "react";
 const Slider = () => {
   const slides = [
     {
-      img: "https://images.pexels.com/photos/2599537/pexels-photo-2599537.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "desc.png",
     },
     {
-      img: "https://images.pexels.com/photos/2714581/pexels-photo-2714581.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "desc.png",
     },
     {
-      img: "https://images.pexels.com/photos/2878019/pexels-photo-2878019.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      img: "desc.png",
     },
     {
-      img: "https://images.pexels.com/photos/1142950/pexels-photo-1142950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "desc.png",
     },
     {
-      img: "https://images.pexels.com/photos/3124111/pexels-photo-3124111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "desc.png",
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
   const slidesCount = slides.length;
   const carouselStyle = {
-    transition: "all .5s",
+    transition: "all .3s",
     ml: `-${currentSlide * 100}%`,
   };
-  const SLIDES_INTERVAL_TIME = 3000;
+  const SLIDES_INTERVAL_TIME = 5000; 
   const ANIMATION_DIRECTION = "right";
   useEffect(() => {
     const prevSlide = () => {
@@ -41,19 +41,20 @@ const Slider = () => {
     }, SLIDES_INTERVAL_TIME);
     return () => clearInterval(automatedSlide);
   }, [slidesCount]);
+
   return (
     <Flex
-      w="full"
+      w="100%"
+      h="500px"
       bg="#edf3f8"
       _dark={{
         bg: "#3e3e3e",
       }}
-      p={10}
       alignItems="center"
       justifyContent="center"
     >
-      <Flex w="full" overflow="hidden">
-        <Flex pos="relative" h="400px" w="full" {...carouselStyle}>
+      <Flex w="100% " overflow="hidden" h="100%">
+        <Flex pos="relative" h="400px" w="100%" {...carouselStyle}>
           {slides.map((slide, sid) => (
             <Box key={`slide-${sid}`} flex="none" boxSize="full" shadow="md">
               <Text
@@ -70,7 +71,7 @@ const Slider = () => {
                 src={slide.img}
                 alt="carousel image"
                 boxSize="full"
-                backgroundSize="cover"
+                objectFit="cover"
               />
             </Box>
           ))}

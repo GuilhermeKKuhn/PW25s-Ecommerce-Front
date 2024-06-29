@@ -4,7 +4,8 @@ import {
     Box,
     chakra,
     Image,
-    HStack,
+    Button,
+    Heading,
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 
@@ -33,16 +34,19 @@ const CardProduto = () => (
         >
             <Box w={{ base: "100%", md: "50%" }} bgSize="cover">
                 <Image
-                    src="/Logo.webp" 
-                    alt="Action Figure"
+                    src="https://i0.wp.com/floggingenglish.com/media/contentMedia//2021/10/canon-f1-featured.jpg?fit=2500%2C1467&ssl=1" 
+                    alt="imagem produto"
                     objectFit="cover"
                     boxSize="100%"
                 />
             </Box>
 
             <Box
-                w={{ base: "100%", md: "50%" }}
-                p={6} 
+                w={ 2 / 3}
+                p={{
+                    base: 4,
+                    md: 4,
+                }} 
                 display="flex"
                 flexDirection="column"
                 justifyContent="space-between"
@@ -56,7 +60,7 @@ const CardProduto = () => (
                         color: "white",
                     }}
                 >
-                    Action figure One Piece
+                    Câmera Analógica Canon F-11
                 </chakra.h2>
 
                 <chakra.p
@@ -69,34 +73,10 @@ const CardProduto = () => (
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. In odit fugiat error illum, itaque repudiandae.
                 </chakra.p>
 
-                <HStack spacing={1} mt={2}>
-                    <StarIcon
-                        color="gray.700"
-                        _dark={{
-                            color: "gray.300",
-                        }}
-                    />
-                    <StarIcon
-                        color="gray.700"
-                        _dark={{
-                            color: "gray.300",
-                        }}
-                    />
-                    <StarIcon
-                        color="gray.700"
-                        _dark={{
-                            color: "gray.300",
-                        }}
-                    />
-                    <StarIcon color="gray.500" />
-                    <StarIcon color="gray.500" />
-                </HStack>
+                <Heading color={"gray.900"} fontSize={"sm"}>R$ 1.499,90</Heading>
 
                 <Flex mt={3} justifyContent="flex-end">
-                    <chakra.h3 color="white" fontWeight="bold" fontSize="lg">
-                        $220
-                    </chakra.h3>
-                    <chakra.button
+                    <Button
                         px={4}
                         py={2}
                         bg="yellow.400"
@@ -113,7 +93,7 @@ const CardProduto = () => (
                         }}
                     >
                         Adicionar no carrinho
-                    </chakra.button>
+                    </Button>
                 </Flex>
             </Box>
         </Flex>
