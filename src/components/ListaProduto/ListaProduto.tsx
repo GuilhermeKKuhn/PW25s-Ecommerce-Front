@@ -20,7 +20,6 @@ const ListaProdutos = () => {
     }
   };
 
-  console.log(data);
   return (
     <>
       {/*ajusta aqui para deixar os cards da maniera correta 

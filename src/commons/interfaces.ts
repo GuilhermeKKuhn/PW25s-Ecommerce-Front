@@ -28,3 +28,8 @@ export interface IProduct {
   urlImage: string;
   categoria: string;
 }
+
+export interface ICategory {
+  id: string;
+  categoria: string;
+}

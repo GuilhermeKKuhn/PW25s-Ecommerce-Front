@@ -96,7 +96,7 @@ const NavBar = () => {
                   Home
                 </Button>
               </NavLink>
-              <NavLink to="/produtos">
+              <NavLink to="/produto">
                 <Button variant="ghost" color="white">
                   Produtos
                 </Button>

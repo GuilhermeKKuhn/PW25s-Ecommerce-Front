@@ -5,7 +5,6 @@ import { Flex, Box, chakra, Image, Heading, Button } from "@chakra-ui/react";
 import { IProduct } from "@/commons/interfaces";
 
 const CardProduto = ({ produto }: { produto: IProduct }) => {
-  console.log("Produto recebido pelo CardProduto:", produto);
   return (
     <Flex
       bg="#edf3f8"
