@@ -7,26 +7,21 @@ import { IProduct } from "@/commons/interfaces";
 const CardProduto = ({ produto }: { produto: IProduct }) => {
   return (
     <Flex
-      bg="#edf3f8"
-      _dark={{
-        bg: "#3e3e3e",
-      }}
-      p={10}
-      w="full"
+      bg="transparent"
+      p={4}
+      w="100%"
       alignItems="center"
       justifyContent="center"
+      h="100%"
     >
       <Flex
-        maxW="3xl"
-        mx="auto"
+        maxW="2xl"
         bg="white"
-        _dark={{
-          bg: "gray.800",
-        }}
-        shadow="xl"
+        shadow="lg"
         rounded="lg"
         overflow="hidden"
         flexDirection={{ base: "column", md: "row" }}
+        h="100%"
       >
         <Box w={{ base: "100%", md: "50%" }} bgSize="cover">
           <Image
@@ -39,10 +34,7 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
 
         <Box
           w={2 / 3}
-          p={{
-            base: 4,
-            md: 4,
-          }}
+          p={4}
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
@@ -63,17 +55,16 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
             fontSize="sm"
             color="gray.600"
             _dark={{
-              color: "gray.400",
             }}
           >
             {produto.descricao}
           </chakra.p>
 
           <Heading color={"gray.900"} fontSize={"sm"}>
-            {produto.preco}.
+            R$ {produto.preco} 
           </Heading>
 
-          <Flex mt={3} justifyContent="flex-end">
+          <Flex mt={3} justifyContent="center">
             <Button
               px={4}
               py={2}

@@ -16,6 +16,7 @@ import {
   useColorModeValue,
   useDisclosure,
   VisuallyHidden,
+  Link,
 } from "@chakra-ui/react";
 
 import { AiOutlineMenu } from "react-icons/ai";
@@ -75,7 +76,9 @@ const NavBar = () => {
               <Image
                 src="teste2.png"
                 boxSize="40px"
-                objectFit="contain"
+                objectFit="cover"
+                width={40}
+                mt={2}
                 alt="Logo Reliquario"
               />
               <VisuallyHidden>Reliquário</VisuallyHidden>
@@ -92,17 +95,17 @@ const NavBar = () => {
               }}
             >
               <NavLink to="/">
-                <Button variant="ghost" color="white">
+                <Button variant="ghost" color="white" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
                   Home
                 </Button>
               </NavLink>
               <NavLink to="/produto">
-                <Button variant="ghost" color="white">
+                <Button variant="ghost" color="white" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
                   Produtos
                 </Button>
               </NavLink>
               <NavLink to="/carrinho">
-                <Button variant="ghost" color="white">
+                <Button variant="ghost" color="white" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
                   <FaShoppingCart />
                 </Button>
               </NavLink>
@@ -122,11 +125,38 @@ const NavBar = () => {
                   </Box>
                 </>
               ) : (
-                <NavLink to="/login">
-                  <Button variant="ghost" color="white">
-                    Entrar/Cadastrar
-                  </Button>
-                </NavLink>
+
+                <Flex as="nav" align="center" gap="4">
+                  <NavLink to="/login">
+                      <Link
+                        display="inline-block"
+                        variant="ghost"
+                        color="white"
+                        w="full"
+                        _hover={{
+                          textDecoration: "none",
+                          borderBottom: "2px solid white",
+                        }}
+                      >
+                        Entrar
+                      </Link>
+                  </NavLink>
+                    /
+                  <NavLink to="/signup">
+                      <Link
+                        display="inline-block"
+                        variant="ghost"
+                        color="white"
+                        w="full"
+                        _hover={{
+                          textDecoration: "none",
+                          borderBottom: "2px solid white",
+                        }}
+                      >
+                        Cadastrar
+                      </Link>
+                  </NavLink>
+                </Flex>
               )}
               {isAuthenticated && (
                 <Button variant="ghost" color="white" onClick={OnClickLogout}>
@@ -190,13 +220,14 @@ const NavBar = () => {
                 </NavLink>
                 {isAuthenticated ? (
                   <>
-                    <Button variant="ghost" color="white" w="full">
+                    <Button variant="ghost" color="white" w="full" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
                       {"Nome do Usuário"}
                     </Button>
                     <Button
                       variant="ghost"
                       color="white"
                       w="full"
+                      _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
                       onClick={() => navigate("/perfil")}
                     >
                       Perfil
@@ -205,6 +236,7 @@ const NavBar = () => {
                       variant="ghost"
                       color="white"
                       w="full"
+                      _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
                       onClick={OnClickLogout}
                     >
                       Sair
@@ -212,9 +244,16 @@ const NavBar = () => {
                   </>
                 ) : (
                   <NavLink to="/login">
-                    <Button variant="ghost" color="white" w="full">
-                      Entrar/Cadastrar
-                    </Button>
+                    <Link
+                      variant="ghost"
+                      color="white"
+                      w="full"
+                      _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
+                      href="/login"
+                    >
+                      Entrar
+                    </Link>
+
                   </NavLink>
                 )}
               </VStack>

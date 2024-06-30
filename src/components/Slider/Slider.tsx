@@ -4,19 +4,19 @@ import { useEffect, useState } from "react";
 const Slider = () => {
   const slides = [
     {
-      img: "desc.png",
+      img: "promocional.png",
     },
     {
-      img: "desc.png",
+      img: "promocional.png",
     },
     {
-      img: "desc.png",
+      img: "promocional.png",
     },
     {
-      img: "desc.png",
+      img: "promocional.png",
     },
     {
-      img: "desc.png",
+      img: "promocional.png",
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);

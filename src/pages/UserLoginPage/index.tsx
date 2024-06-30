@@ -3,7 +3,8 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { IUserLogin } from "@/commons/interfaces";
 import AuthService from "@/services/AuthService";
-import { Button } from "@chakra-ui/react";
+import { Button, Link } from "@chakra-ui/react";
+
 
 export function UserLoginPage() {
   const [form, setForm] = useState({
@@ -89,7 +90,7 @@ export function UserLoginPage() {
               </div>
               <div className="recup">
                 <label>
-                  <input type="checkbox" className="check"/>
+                  <input type="checkbox" className="check" />
                 </label>
                 <h3>Lembre de mim</h3>
                 <a href="#">Esqueceu a senha?</a>
@@ -113,6 +114,15 @@ export function UserLoginPage() {
               >
                 Entrar
               </Button>
+              <Link
+                href="/home"
+                color="white"
+                display="block"
+                textAlign="center"
+                my={5}
+              >
+                Voltar
+              </Link>
               <div className="dir-cadastro">
                 Não tem cadastro?<a href="#">cadastre-se</a>
               </div>

@@ -1,9 +1,13 @@
+import {
+  Link,
+} from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import AuthService from "@/services/AuthService";
 import { IUserSignup } from "@/commons/interfaces";
 import { Button } from "@chakra-ui/react";
+
 
 export function UserSingupPage() {
   const [form, setForm] = useState({
@@ -177,6 +181,15 @@ export function UserSingupPage() {
                     >
                       Cadastrar
                     </Button>
+                    <Link
+                      href="/home"
+                      color="white"
+                      display="block"
+                      textAlign="center"
+                      my={5}
+                    >
+                      Voltar
+                    </Link>
                   </form>
                 </div>
               </div>
