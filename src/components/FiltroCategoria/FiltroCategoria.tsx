@@ -1,38 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { ICategory } from "@/commons/interfaces";
-import categoriaService from "@/services/CategoriaService";
+import { Button } from "@chakra-ui/react";
+import { FiltroCategoriaProps, ICategory } from "@/commons/interfaces";
 
-const FiltroCategoria = () => {
-  const [data, setData] = useState<ICategory[]>([]);
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    try {
-      const response = await categoriaService.findAll();
-      setData(response);
-    } catch (error) {
-      console.error("Erro ao buscar categorias:", error);
-    }
-  };
-
+const FiltroCategoria = ({
+  categories,
+  onCategoryClick,
+}: FiltroCategoriaProps) => {
   return (
-    <div>
-      <div className="category-buttons">
-        {data.map((categoria: ICategory) => (
-          <button key={categoria.id}>{categoria.categoria}</button>
-        ))}
-      </div>
-
-      <div className="items">
-        {data.map((categoria: ICategory) => (
-          <div key={categoria.id} className="item">
-            {categoria.categoria}
-          </div>
-        ))}
-      </div>
+    <div className="d-flex justify-content-center">
+      <Button
+        onClick={() => onCategoryClick(0)}
+        className="btn me-2 mb-2 btn-secondary"
+      >
+        Todos
+      </Button>
+      {categories.map((categoria: ICategory) => (
+        <Button
+          key={categoria.id}
+          onClick={() => onCategoryClick(categoria.id)}
+          className="btn me-2 mb-2 btn-secondary"
+        >
+          {categoria.categoria}
+        </Button>
+      ))}
     </div>
   );
 };
