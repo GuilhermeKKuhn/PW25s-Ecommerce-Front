@@ -55,15 +55,15 @@ const CategoriaProduto = () => {
           Produtos
         </Heading>
       </div>
-      <div className="row">
-        <div className="col-md-12">
+      <div className="row border border-danger">
+        <div className="col-md-12 mt-3">
           <FiltroCategoria
             categories={categories}
             onCategoryClick={handleCategoryClick}
           />
         </div>
       </div>
-      <div className="row">
+      <div className="row border border-alert">
         <div className="col-md-12">
           <ListaProduto produtos={filteredProducts} />
         </div>

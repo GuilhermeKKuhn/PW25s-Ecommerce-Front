@@ -1,8 +1,6 @@
 import { IProduct } from "@/commons/interfaces";
-import { useEffect, useState } from "react";
 import CardProduto from "@/components/CardProduto/CardProduto";
-import produtoService from "@/services/ProdutoService";
-import { Flex, Grid, GridItem, Heading, Box } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Box } from "@chakra-ui/react";
 
 const ListaProdutos = ({ produtos }: { produtos: IProduct[] }) => {
   return (
