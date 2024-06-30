@@ -30,6 +30,15 @@ export interface IProduct {
 }
 
 export interface ICategory {
-  id: string;
+  id: number;
   categoria: string;
+}
+
+export interface FiltroCategoriaProps {
+  categories: ICategory[];
+  onCategoryClick: (categoryId: number) => void;
+}
+
+export interface IListaProdutosProps {
+  produtos: IProduct[];
 }

@@ -13,7 +13,7 @@ const findAll = async (): Promise<any> => {
 const findbyCategoria = async (id: number): Promise<any> => {
   let response;
   try {
-    response = await api.get(`/produto/categoria/${id}`);
+    response = await api.get(`/produto/categoriaId/${id}`);
   } catch (error: any) {
     response = error.response;
   }
