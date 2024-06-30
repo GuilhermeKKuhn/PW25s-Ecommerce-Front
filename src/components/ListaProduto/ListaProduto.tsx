@@ -8,9 +8,6 @@ const ListaProdutos = ({ produtos }: { produtos: IProduct[] }) => {
   return (
     <>
       <Box bg="white" py={10}>
-        <Heading mt={10} textAlign="center">
-          Produtos
-        </Heading>
         <Flex justify="center" mt={10}>
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}

@@ -4,6 +4,7 @@ import categoriaService from "@/services/CategoriaService";
 import produtoService from "@/services/ProdutoService";
 import FiltroCategoria from "../FiltroCategoria/FiltroCategoria";
 import ListaProduto from "../ListaProduto/ListaProduto";
+import { Heading } from "@chakra-ui/react";
 
 const CategoriaProduto = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -36,7 +37,7 @@ const CategoriaProduto = () => {
 
   const handleCategoryClick = async (categoryId: number) => {
     if (categoryId === 0) {
-      setFilteredProducts(allProducts); // puxa todos os produtos
+      setFilteredProducts(allProducts);
     } else {
       try {
         const response = await produtoService.findbyCategoria(categoryId);
@@ -49,6 +50,11 @@ const CategoriaProduto = () => {
 
   return (
     <>
+      <div>
+        <Heading mt={10} textAlign="center">
+          Produtos
+        </Heading>
+      </div>
       <div className="row">
         <div className="col-md-12">
           <FiltroCategoria
