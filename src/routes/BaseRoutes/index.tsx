@@ -15,7 +15,7 @@ export function BaseRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/produto" element={<ProductPage />} />
-      <Route path="/detalhes" element={<PaginaInternaProduto />} />
+      <Route path="/produto/:id" element={<PaginaInternaProduto />} />
 
       {/*rotas privadas*/}
       <Route element={<AuthenticatedRoutes />}></Route>

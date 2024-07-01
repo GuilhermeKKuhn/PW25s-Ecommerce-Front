@@ -3,6 +3,7 @@
 
 import { Flex, Box, chakra, Image, Heading, Button } from "@chakra-ui/react";
 import { IProduct } from "@/commons/interfaces";
+import { NavLink } from "react-router-dom";
 
 const CardProduto = ({ produto }: { produto: IProduct }) => {
   return (
@@ -14,78 +15,93 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
       justifyContent="center"
       h="100%"
     >
-      <Flex
-        maxW="2xl"
-        bg="white"
-        shadow="lg"
-        rounded="lg"
-        overflow="hidden"
-        flexDirection={{ base: "column", md: "row" }}
-        h="100%"
+      <NavLink
+        to={`/produto/${produto.id}`}
+        style={{ textDecoration: "none", width: "100%" }}
       >
-        <Box w={{ base: "100%", md: "50%" }} bgSize="cover">
-          <Image
-            src={produto.urlImage}
-            alt={produto.nome}
-            objectFit="cover"
-            boxSize="100%"
-          />
-        </Box>
-
-        <Box
-          w={2 / 3}
-          p={4}
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
+        <Flex
+          maxW="2xl"
+          bg="white"
+          shadow="lg"
+          rounded="lg"
+          overflow="hidden"
+          flexDirection={{ base: "column", md: "row" }}
+          h="100%"
+          _hover={{ cursor: "pointer" }}
+          position="relative"
         >
-          <chakra.h2
-            fontSize="xl"
-            fontWeight="bold"
-            color="gray.800"
-            mb={2}
-            _dark={{
-              color: "white",
-            }}
+          <Box w={{ base: "100%", md: "50%" }} bgSize="cover">
+            <Image
+              src={produto.urlImage}
+              alt={produto.nome}
+              objectFit="cover"
+              boxSize="100%"
+            />
+          </Box>
+
+          <Box
+            w={{ base: "100%", md: "50%" }}
+            p={4}
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
           >
-            {produto.nome}
-          </chakra.h2>
-
-          <chakra.p
-            fontSize="sm"
-            color="gray.600"
-            _dark={{
-            }}
-          >
-            {produto.descricao}
-          </chakra.p>
-
-          <Heading color={"gray.900"} fontSize={"sm"}>
-            R$ {produto.preco} 
-          </Heading>
-
-          <Flex mt={3} justifyContent="center">
-            <Button
-              px={4}
-              py={2}
-              bg="yellow.400"
-              fontSize="sm"
-              color="gray.900"
+            <chakra.h2
+              fontSize="xl"
               fontWeight="bold"
-              borderRadius="lg"
-              ml={2}
-              _hover={{
-                bg: "yellow.500",
-              }}
-              _focus={{
-                bg: "yellow.600",
+              color="gray.800"
+              mb={2}
+              _dark={{
+                color: "white",
               }}
             >
-              Adicionar no carrinho
-            </Button>
-          </Flex>
-        </Box>
-      </Flex>
+              {produto.nome}
+            </chakra.h2>
+
+            <chakra.p
+              fontSize="sm"
+              color="gray.600"
+              _dark={{
+                color: "gray.400",
+              }}
+            >
+              {produto.descricao}
+            </chakra.p>
+
+            <Heading color={"gray.900"} fontSize={"sm"}>
+              R$ {produto.preco}
+            </Heading>
+
+            <Flex mt={3} justifyContent="center">
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  console.log(
+                    `Produto adicionado ao carrinho: ${produto.nome}`
+                  );
+                }}
+                px={4}
+                py={2}
+                bg="yellow.400"
+                fontSize="sm"
+                color="gray.900"
+                fontWeight="bold"
+                borderRadius="lg"
+                ml={2}
+                _hover={{
+                  bg: "yellow.500",
+                }}
+                _focus={{
+                  bg: "yellow.600",
+                }}
+              >
+                Adicionar no carrinho
+              </Button>
+            </Flex>
+          </Box>
+        </Flex>
+      </NavLink>
     </Flex>
   );
 };

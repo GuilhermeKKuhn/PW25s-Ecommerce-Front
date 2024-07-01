@@ -1,24 +1,48 @@
+import { IProduct } from "@/commons/interfaces";
+import produtoService from "@/services/ProdutoService";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 export function DetalhesProduto() {
+  const { id } = useParams<{ id: string }>();
+  const [produto, setProduto] = useState<IProduct>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchProduct();
+  }, [id]);
+
+  const fetchProduct = async () => {
+    let response;
+    if (!id) {
+      console.log("ID do produto não está definido");
+      navigate("/"); // Redireciona para a página inicial
+      return;
+    }
+    try {
+      response = await produtoService.findById(parseInt(id));
+      setProduto(response);
+    } catch (error: any) {
+      response = error.response;
+    }
+    return response.data;
+  };
+
+  console.log(produto);
   return (
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
           <img
-            src="https://via.placeholder.com/400x300"
+            src={produto?.urlImage}
             className="img-fluid"
-            alt="Nome do Produto"
+            alt={produto?.nome}
           ></img>
         </div>
         <div className="col-md-6">
-          <h2>Nome do Produto</h2>
-          <p className="lead">Descrição curta do produto aqui.</p>
-          <p className="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-            consectetur, nisi eget fermentum finibus, enim tellus ultricies
-            ipsum, id ultrices nulla ipsum et orci.
-          </p>
-          <p className="font-weight-bold">Preço: R$ 99,99</p>
-
+          <h2>{produto?.nome}</h2>
+          <p className="lead">{produto?.descricao}</p>
+          <p className="font-weight-bold">Preço: R$ {produto?.preco}</p>
           <form>
             <div className="form-group">
               <label htmlFor="tipoPagamento">
