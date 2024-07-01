@@ -30,12 +30,25 @@ const BotaoAddCarrinho = ({ produto }: { produto: IProduct }) => {
     setNoCarrinho(true);
   };
 
+  const removerDoCarrinho = () => {
+    let carrinho: IProduct[] = [];
+    const itensCarrinho = localStorage.getItem("itensCarrinho");
+    if (itensCarrinho) {
+      carrinho = JSON.parse(itensCarrinho);
+      const updatedCarrinho = carrinho.filter(
+        (item: IProduct) => item.id !== produto.id
+      );
+      localStorage.setItem("itensCarrinho", JSON.stringify(updatedCarrinho));
+      setNoCarrinho(false);
+    }
+  };
+
   return (
     <Button
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
-        addNoCarrinho();
+        noCarrinho ? removerDoCarrinho() : addNoCarrinho();
       }}
       px={4}
       py={2}
@@ -53,7 +66,7 @@ const BotaoAddCarrinho = ({ produto }: { produto: IProduct }) => {
       }}
       disabled={noCarrinho}
     >
-      {noCarrinho ? "Produto Adicionado" : "Adicionar no carrinho"}
+      {noCarrinho ? "Remover do Carrinho" : "Adicionar ao Carrinho"}
     </Button>
   );
 };

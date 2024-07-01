@@ -21,12 +21,13 @@ export interface IUser {
 }
 
 export interface IProduct {
-  id: number;
+  id?: number;
   nome: string;
   descricao: string;
   preco: number;
   urlImage: string;
   categoria: string;
+  quantity?: number;
 }
 
 export interface ICategory {
@@ -40,5 +41,5 @@ export interface FiltroCategoriaProps {
 }
 
 export interface IListaProdutosProps {
-  produtos: IProduct[];
+  produtos?: IProduct[];
 }

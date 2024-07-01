@@ -1,12 +1,13 @@
 import { IProduct } from "@/commons/interfaces";
 import produtoService from "@/services/ProdutoService";
+import { Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import BotaoAddCarrinho from "../BotaoAddCarrinho/BotaoAddCarrinho";
 
 export function DetalhesProduto() {
   const { id } = useParams<{ id: string }>();
   const [produto, setProduto] = useState<IProduct>();
-  const [quantidade, setQuantidade] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,15 +30,9 @@ export function DetalhesProduto() {
     return response.data;
   };
 
-  const incrementarQuantidade = () => {
-    setQuantidade((prevQuantidade) => prevQuantidade + 1);
-  };
-
-  const decrementarQuantidade = () => {
-    if (quantidade > 1) {
-      setQuantidade((prevQuantidade) => prevQuantidade - 1);
-    }
-  };
+  if (!produto) {
+    return null;
+  }
 
   return (
     <div className="container mt-5">
@@ -53,28 +48,6 @@ export function DetalhesProduto() {
           <h2>{produto?.nome}</h2>
           <p className="lead">{produto?.descricao}</p>
           <p className="font-weight-bold">Preço: R$ {produto?.preco}</p>
-
-          <div className="form-group">
-            <label>Quantidade:</label>
-            <div className="d-flex">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={decrementarQuantidade}
-              >
-                -
-              </button>
-              <span className="mx-2">{quantidade}</span>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={incrementarQuantidade}
-              >
-                +
-              </button>
-            </div>
-          </div>
-
           <form>
             <div className="form-group">
               <label htmlFor="tipoPagamento">
@@ -97,14 +70,13 @@ export function DetalhesProduto() {
               </select>
             </div>
 
-            <button type="submit" className="btn btn-primary">
-              Adicionar ao Carrinho
-            </button>
+            <Flex mt={3} justifyContent="center">
+              <BotaoAddCarrinho produto={produto} />
+            </Flex>
           </form>
         </div>
       </div>
     </div>
   );
 }
-
 export default DetalhesProduto;
