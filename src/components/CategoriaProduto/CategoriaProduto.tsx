@@ -4,7 +4,7 @@ import categoriaService from "@/services/CategoriaService";
 import produtoService from "@/services/ProdutoService";
 import FiltroCategoria from "../FiltroCategoria/FiltroCategoria";
 import ListaProduto from "../ListaProduto/ListaProduto";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Box, Flex } from "@chakra-ui/react";
 
 const CategoriaProduto = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -50,24 +50,22 @@ const CategoriaProduto = () => {
 
   return (
     <>
-      <div>
-        <Heading mt={20} mb={10}textAlign="center">
+      <Box mt={20}>
+        <Heading mb={10} textAlign="center">
           Produtos
         </Heading>
-      </div>
-      <div className="row border border-danger">
-        <div className="col-md-12 mt-3">
+        <Flex justifyContent="center" mb={4}>
           <FiltroCategoria
             categories={categories}
             onCategoryClick={handleCategoryClick}
           />
-        </div>
-      </div>
-      <div className="row border border-alert">
-        <div className="col-md-12">
-          <ListaProduto produtos={filteredProducts} />
-        </div>
-      </div>
+        </Flex>
+        <Flex justifyContent="center">
+          <Box w="full" maxW="95%">
+            <ListaProduto produtos={filteredProducts} />
+          </Box>
+        </Flex>
+      </Box>
     </>
   );
 };

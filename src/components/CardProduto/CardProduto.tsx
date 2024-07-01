@@ -12,9 +12,10 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
       bg="transparent"
       p={4}
       w="100%"
-      alignItems="center"
-      justifyContent="center"
       h="100%"
+      alignItems="stretch"
+      justifyContent="center"
+      
     >
       <NavLink
         to={`/produto/${produto.id}`}
