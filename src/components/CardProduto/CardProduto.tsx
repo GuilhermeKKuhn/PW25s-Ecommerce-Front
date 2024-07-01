@@ -1,9 +1,10 @@
 //esse card de produto é só pra ser padrao pra todos os cards serem assim, se for alterar vai ser somente o estilo do card nao como eles vao aparecer na pagina,
 //isso é no ListaProduto
 
-import { Flex, Box, chakra, Image, Heading, Button } from "@chakra-ui/react";
+import { Flex, Box, chakra, Image, Heading } from "@chakra-ui/react";
 import { IProduct } from "@/commons/interfaces";
 import { NavLink } from "react-router-dom";
+import BotaoAddCarrinho from "../BotaoAddCarrinho/BotaoAddCarrinho";
 
 const CardProduto = ({ produto }: { produto: IProduct }) => {
   return (
@@ -71,33 +72,8 @@ const CardProduto = ({ produto }: { produto: IProduct }) => {
             <Heading color={"gray.900"} fontSize={"sm"}>
               R$ {produto.preco}
             </Heading>
-
             <Flex mt={3} justifyContent="center">
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  console.log(
-                    `Produto adicionado ao carrinho: ${produto.nome}`
-                  );
-                }}
-                px={4}
-                py={2}
-                bg="yellow.400"
-                fontSize="sm"
-                color="gray.900"
-                fontWeight="bold"
-                borderRadius="lg"
-                ml={2}
-                _hover={{
-                  bg: "yellow.500",
-                }}
-                _focus={{
-                  bg: "yellow.600",
-                }}
-              >
-                Adicionar no carrinho
-              </Button>
+              <BotaoAddCarrinho produto={produto} />
             </Flex>
           </Box>
         </Flex>
