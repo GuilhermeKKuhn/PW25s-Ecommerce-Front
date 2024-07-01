@@ -51,7 +51,7 @@ const CategoriaProduto = () => {
   return (
     <>
       <div>
-        <Heading mt={10} textAlign="center">
+        <Heading mt={20} mb={10}textAlign="center">
           Produtos
         </Heading>
       </div>

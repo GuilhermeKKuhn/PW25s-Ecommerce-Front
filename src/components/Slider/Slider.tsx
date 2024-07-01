@@ -45,16 +45,13 @@ const Slider = () => {
   return (
     <Flex
       w="100%"
-      h="500px"
-      bg="#edf3f8"
-      _dark={{
-        bg: "#3e3e3e",
-      }}
+      h="100%"
+      bg="white"
       alignItems="center"
       justifyContent="center"
     >
       <Flex w="100% " overflow="hidden" h="100%">
-        <Flex pos="relative" h="400px" w="100%" {...carouselStyle}>
+        <Flex pos="relative" h="100%" w="100%" {...carouselStyle}>
           {slides.map((slide, sid) => (
             <Box key={`slide-${sid}`} flex="none" boxSize="full" shadow="md">
               <Text

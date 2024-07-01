@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import { FiltroCategoriaProps, ICategory } from "@/commons/interfaces";
 
 const FiltroCategoria = ({
@@ -6,23 +6,25 @@ const FiltroCategoria = ({
   onCategoryClick,
 }: FiltroCategoriaProps) => {
   return (
-    <div className="d-flex justify-content-center">
+    <Flex justify="center" wrap="wrap" mb={4} bg="white" >
       <Button
+        bg="white"
         onClick={() => onCategoryClick(0)}
-        className="btn me-2 mb-2 btn-secondary"
+        mr={2}
+        _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
       >
-        Todos
+      Todos
       </Button>
       {categories.map((categoria: ICategory) => (
         <Button
           key={categoria.id}
           onClick={() => onCategoryClick(categoria.id)}
-          className="btn me-2 mb-2 btn-secondary"
+          mr={2}
         >
           {categoria.categoria}
         </Button>
       ))}
-    </div>
+    </Flex>
   );
 };
 
