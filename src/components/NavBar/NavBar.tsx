@@ -111,13 +111,13 @@ const NavBar = () => {
               </NavLink>
               {data && isAuthenticated ? (
                 <>
-                  {/*falta verifica para puxar o nome do fdp*/}
-                  <Button variant="ghost">{data.username}</Button>
+                  <Button variant="ghost" color="white" 
+                  _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>{data.username}</Button>
                   <Box boxSize="36px" borderRadius="full" bg="gray.200">
                     <Image
                       boxSize="36px"
                       borderRadius="full"
-                      src={"avatar_url"}
+                      src={"do-utilizador.png"}
                       alt="Perfil"
                       onClick={() => navigate("/perfil")}
                       cursor="pointer"
