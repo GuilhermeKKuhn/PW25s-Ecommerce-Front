@@ -16,6 +16,8 @@ const Footer = () => (
   <Box
     bg = "rgba(54,54,54)"
     color="white"
+    flex={1}
+
   >
     <Stack
       direction={{
@@ -28,7 +30,7 @@ const Footer = () => (
     >
       <Flex justify="center">
         <Image
-          src="teste2.png"
+          src="teste22.png"
           alt="Logo Reliquario"
           rounded="lg"
           width={150}
