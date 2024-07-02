@@ -46,7 +46,7 @@ const Slider = () => {
     <Flex
       w="100%"
       h="100%"
-      bg="white"
+      bg="transparent"
       alignItems="center"
       justifyContent="center"
     >

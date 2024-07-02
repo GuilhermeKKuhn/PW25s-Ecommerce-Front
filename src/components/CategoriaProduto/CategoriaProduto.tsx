@@ -50,17 +50,17 @@ const CategoriaProduto = () => {
 
   return (
     <>
-      <Box mt={20}>
+      <Box pt={20} bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'>
         <Heading mb={10} textAlign="center">
           Produtos
         </Heading>
-        <Flex justifyContent="center" mb={4}>
+        <Flex justifyContent="center" mb={4} >
           <FiltroCategoria
             categories={categories}
             onCategoryClick={handleCategoryClick}
           />
-        </Flex>
-        <Flex justifyContent="center">
+        </Flex >
+        <Flex justifyContent="center" >
           <Box w="full" maxW="95%">
             <ListaProduto produtos={filteredProducts} />
           </Box>

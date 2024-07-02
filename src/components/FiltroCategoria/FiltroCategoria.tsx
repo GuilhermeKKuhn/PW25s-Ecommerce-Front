@@ -6,20 +6,27 @@ const FiltroCategoria = ({
   onCategoryClick,
 }: FiltroCategoriaProps) => {
   return (
-    <Flex justify="center" wrap="wrap" mb={4} bg="white" >
+    <Flex justify="center" wrap="wrap" pb={4} bg="transparent" >
       <Button
         bg="white"
         onClick={() => onCategoryClick(0)}
         mr={2}
-        _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
+        style={{ borderColor: "black" }}
+        _hover={{
+          bgGradient: 'linear(to-r, gray.500, yellow.500)'
+        }}
       >
-      Todos
+        Todos
       </Button>
       {categories.map((categoria: ICategory) => (
         <Button
           key={categoria.id}
           onClick={() => onCategoryClick(categoria.id)}
           mr={2}
+          style={{ borderColor: "black" }}
+          _hover={{
+            bgGradient: 'linear(to-r, gray.500, yellow.500)'
+          }}
         >
           {categoria.categoria}
         </Button>

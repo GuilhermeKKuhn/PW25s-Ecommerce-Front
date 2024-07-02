@@ -5,7 +5,7 @@ import { Flex, Grid, GridItem, Box } from "@chakra-ui/react";
 const ListaProdutos = ({ produtos }: { produtos: IProduct[] }) => {
   return (
     <>
-      <Box bg="white" py={10}>
+      <Box bgGradient='linear(to-r, gray.300, yellow.400, pink.200)' py={10}>
         <Flex justify="center" mt={10}>
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}

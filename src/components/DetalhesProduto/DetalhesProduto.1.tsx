@@ -6,6 +6,7 @@ import {
   FormControl,
   FormLabel,
   Select,
+  Link,
 } from '@chakra-ui/react';
 import { IProduct } from "@/commons/interfaces";
 import produtoService from "@/services/ProdutoService";
@@ -44,7 +45,7 @@ export function DetalhesProduto() {
   }
 
   return (
-    <Box pb={40} pt={10} bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'>
+    <Box pb={40} pt={5} bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'>
       <Heading textAlign="center" mb={20}>Produto</Heading>
       <Flex
         flexDirection={{ base: 'column', md: 'row' }}
@@ -60,62 +61,77 @@ export function DetalhesProduto() {
             boxSize="500px"
           />
         </Box>
-        <Box flexDirection="column" alignItems="center" ml={{ md: 8 }}  boxSize={500} borderRadius={25}>
-          <Heading size="lg" textAlign="center" mt={10} mb={10}>
+        <Box
+          w={{ base: '90%', md: '40%' }}
+          p={8}
+          borderRadius={25}
+          boxShadow="lg"
+          bg="white"
+        >
+          <Heading size="lg" textAlign="center" mt={10} mb={6}>
             {produto?.nome}
           </Heading>
-          <Box mb={10} textAlign="center">
+          <Box mb={6} textAlign="center">
             <p>{produto?.descricao}</p>
           </Box>
-          <Box fontWeight="bold" fontSize="xl" textAlign="center">
+          <Box fontWeight="bold" fontSize="xl" textAlign="center" mb={4}>
             Preço: R$ {produto?.preco}
           </Box>
-          <Heading 
-          size="sm" 
-          fontWeight="none" 
-          textAlign="center" 
-          mb={4}>
-          Em até 10x de R$ {(produto?.preco / 7).toFixed(2)} sem juros no cartão</Heading>
-
-          <form className='pagamento'>
-            <FormControl mb={4}>
+          <Heading
+            size="sm"
+            fontWeight="none"
+            textAlign="center"
+            mb={6}>
+            Em até 10x de R$ {(produto?.preco / 10).toFixed(2)} sem juros no cartão
+          </Heading>
+          <form>
+            <FormControl mb={4} >
               <FormLabel htmlFor="tipoPagamento">
                 Selecione o Tipo de Pagamento:
               </FormLabel>
-              <Select id="tipoPagamento" 
-              placeholder="Selecione"  
-              color='black'
+              <Select id="tipoPagamento"
+                placeholder="Selecione"
+                color='black'
                 fontWeight='bold'
                 borderRadius='md'
                 style={{ borderColor: "black" }}
                 _hover={{
-                  bgGradient: 'linear(to-r, gray.500, yellow.500)'}}>
+                  bgGradient: 'linear(to-r, gray.500, yellow.500)'
+                }}>
                 <option>Cartão de Crédito</option>
                 <option>Boleto Bancário</option>
                 <option>Pix</option>
                 <option>Transferência Bancária</option>
               </Select>
             </FormControl>
-
             <FormControl mb={4}>
               <FormLabel htmlFor="tipoFrete">Selecione o Tipo de Frete:</FormLabel>
-              <Select id="tipoFrete" 
-              placeholder="Selecione" 
-              color='black'
-              fontWeight='bold'
-              borderRadius='md'
-              style={{ borderColor: "black" }}
-              _hover={{
-                bgGradient: 'linear(to-r, gray.500, yellow.500)'}}>
+              <Select id="tipoFrete"
+                placeholder="Selecione"
+                color='black'
+                fontWeight='bold'
+                borderRadius='md'
+                style={{ borderColor: "black" }}
+                _hover={{
+                  bgGradient: 'linear(to-r, green.500, yellow.500)'
+                }}>
                 <option>Frete Normal (5-7 dias úteis)</option>
                 <option>Frete Expresso (2-3 dias úteis)</option>
                 <option>Retirada na Loja</option>
               </Select>
             </FormControl>
-
-            <Flex justifyContent="center">
+            <Flex justifyContent="center" mt={4}>
               <BotaoAddCarrinho produto={produto} />
             </Flex>
+            <Link
+                href="/produto"
+                color="black"
+                display="block"
+                textAlign="center"
+                my={5}
+              >
+                Voltar
+              </Link>
           </form>
         </Box>
       </Flex>

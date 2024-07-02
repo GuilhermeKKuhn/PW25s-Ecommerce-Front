@@ -9,7 +9,7 @@ import BotaoAddCarrinho from "../BotaoAddCarrinho/BotaoAddCarrinho";
 const CardProduto = ({ produto }: { produto: IProduct }) => {
   return (
     <Flex
-      bg="transparent"
+      bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'
       p={4}
       w="100%"
       h="100%"
