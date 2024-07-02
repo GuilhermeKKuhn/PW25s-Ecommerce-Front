@@ -6,7 +6,7 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import AuthService from "@/services/AuthService";
 import { IUserSignup } from "@/commons/interfaces";
-import { Button } from "@chakra-ui/react";
+import { Button, Box} from "@chakra-ui/react";
 
 
 export function UserSingupPage() {
@@ -68,7 +68,7 @@ export function UserSingupPage() {
 
   return (
     <>
-      <div className="background">
+      <Box bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'>
         <div className="container">
           <div className="cadastro-box">
             <div>
@@ -196,7 +196,7 @@ export function UserSingupPage() {
             </div>
           </div>
         </div>
-      </div>
+      </Box>
     </>
   );
 }

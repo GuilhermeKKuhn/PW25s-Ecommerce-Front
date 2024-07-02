@@ -3,7 +3,7 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { IUserLogin } from "@/commons/interfaces";
 import AuthService from "@/services/AuthService";
-import { Button, Link } from "@chakra-ui/react";
+import { Button, Link, Box } from "@chakra-ui/react";
 
 
 export function UserLoginPage() {
@@ -63,7 +63,7 @@ export function UserLoginPage() {
 
   return (
     <>
-      <div className="background">
+      <Box bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'>
         <div className="container">
           <div className="login-box">
             <h4>Login</h4>
@@ -124,12 +124,12 @@ export function UserLoginPage() {
                 Voltar
               </Link>
               <div className="dir-cadastro">
-                Não tem cadastro?<a href="#">cadastre-se</a>
+                Não tem cadastro?<a href="/signup">cadastre-se</a>
               </div>
             </form>
           </div>
         </div>
-      </div>
+      </Box>
     </>
   );
 }
