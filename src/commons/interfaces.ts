@@ -22,13 +22,12 @@ export interface IUser {
 
 export interface IProduct {
   quantidade: string | number | readonly string[] | undefined;
-  id?: string | number | undefined;
+  id?: string | number;
   nome: string;
   descricao: string;
   preco: number;
   urlImage: string;
   categoria: string;
-  quantity?: number;
 }
 
 export interface ICategory {

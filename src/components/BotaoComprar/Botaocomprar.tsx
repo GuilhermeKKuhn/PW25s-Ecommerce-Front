@@ -7,6 +7,7 @@ const BotaoComprar = () => {
 
   const verificarLogin = () => {
     if (AuthService.isAuthenticated()) {
+      navigate("/finalizarPedido");
     } else {
       navigate("/login");
     }
@@ -17,14 +18,15 @@ const BotaoComprar = () => {
       onClick={verificarLogin}
       px={4}
       py={2}
-      color='black'
-      fontWeight='bold'
+      color="black"
+      fontWeight="bold"
       bg="green.200"
-      borderRadius='md'
+      borderRadius="md"
       style={{ borderColor: "black" }}
       _hover={{
-        bgGradient: 'linear(to-r, green.500, yellow.500)'
-      }}>
+        bgGradient: "linear(to-r, green.500, yellow.500)",
+      }}
+    >
       Finalizar Pedido
     </Button>
   );

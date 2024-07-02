@@ -1,24 +1,22 @@
+import { IProduct } from "@/commons/interfaces";
 import {
   Box,
   Button,
   Flex,
   Grid,
   Heading,
-  Image,
   Input,
+  Image,
   Text,
 } from "@chakra-ui/react";
-import { IProduct } from "@/commons/interfaces";
-import { chakra } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import BotaoComprar from "../BotaoComprar/Botaocomprar";
 
 const Cart = () => {
   const [carrinho, setCarrinho] = useState<IProduct[]>([]);
   const [total, setTotal] = useState(0);
   const frete = 10; // deixei um frete fixo só pra ficar bonitinho
-  const navigation = useNavigate();
 
   useEffect(() => {
     const itensCarrinho = localStorage.getItem("itensCarrinho");
@@ -31,7 +29,7 @@ const Cart = () => {
 
   const calcularTotal = (produtos: IProduct[]) => {
     const totalCalculado = produtos.reduce(
-      (acc, item) => acc + (item.preco * item.quantidade || 0),
+      (acc, item) => acc + Number(item.preco) * Number(item.quantidade ?? 1),
       0
     );
     setTotal(totalCalculado);
@@ -40,7 +38,7 @@ const Cart = () => {
   const incrementarQuantidade = (id: number) => {
     const novoCarrinho = carrinho.map((item) =>
       item.id === id
-        ? { ...item, quantidade: (item.quantidade || 0) + 1 }
+        ? { ...item, quantidade: Number(item.quantidade ?? 0) + 1 }
         : item
     );
     setCarrinho(novoCarrinho);
@@ -49,16 +47,17 @@ const Cart = () => {
   };
 
   const decrementarQuantidade = (id: number) => {
-    const novoCarrinho = carrinho.map((item) =>
-      item.id === id && item.quantidade && item.quantidade > 1
-        ? { ...item, quantidade: item.quantidade - 1 }
-        : item
-    );
+    const novoCarrinho = carrinho.map((item) => {
+      if (item.id === id && item.quantidade && Number(item.quantidade) > 1) {
+        return { ...item, quantidade: Number(item.quantidade) - 1 };
+      } else {
+        return item;
+      }
+    });
     setCarrinho(novoCarrinho);
     localStorage.setItem("itensCarrinho", JSON.stringify(novoCarrinho));
     calcularTotal(novoCarrinho);
   };
-
   const removerDoCarrinho = (id: number) => {
     const atualizarCarrinho = carrinho.filter((item) => item.id !== id);
     setCarrinho(atualizarCarrinho);
@@ -67,7 +66,11 @@ const Cart = () => {
   };
 
   return (
-    <Box pt={10} px={4} bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'>
+    <Box
+      pt={10}
+      px={4}
+      bgGradient="linear(to-r, gray.300, yellow.400, pink.200)"
+    >
       <Heading textAlign="center" mb={10}>
         Carrinho
       </Heading>
@@ -94,14 +97,14 @@ const Cart = () => {
                 >
                   <Text fontWeight="bold">{produto.nome}</Text>
                   <Button
-                    fontWeight='bold'
-                    borderRadius='md'
+                    fontWeight="bold"
+                    borderRadius="md"
                     style={{ borderColor: "black" }}
                     bg="red.500"
                     _hover={{
-                      bgGradient: 'linear(to-r, red.500, gray.400)'
+                      bgGradient: "linear(to-r, red.500, gray.400)",
                     }}
-                    onClick={() => removerDoCarrinho(produto.id)}
+                    onClick={() => removerDoCarrinho(Number(produto.id))}
                   >
                     Remover
                   </Button>
@@ -122,9 +125,11 @@ const Cart = () => {
                         size="sm"
                         bg="transparent"
                         _hover={{
-                          bgGradient: 'linear(to-r, red.500, gray.400)'
+                          bgGradient: "linear(to-r, red.500, gray.400)",
                         }}
-                        onClick={() => decrementarQuantidade(produto.id)}
+                        onClick={() =>
+                          decrementarQuantidade(Number(produto.id))
+                        }
                       >
                         -
                       </Button>
@@ -134,15 +139,17 @@ const Cart = () => {
                         size="sm"
                         width="50px"
                         border="none"
-                        fontWeight='bold'
+                        fontWeight="bold"
                         textAlign="center"
                       />
                       <Button
                         size="sm"
-                        onClick={() => incrementarQuantidade(produto.id)}
+                        onClick={() =>
+                          incrementarQuantidade(Number(produto.id))
+                        }
                         bg="transparent"
                         _hover={{
-                          bgGradient: 'linear(to-r, green.500, gray.200)'
+                          bgGradient: "linear(to-r, green.500, gray.200)",
                         }}
                       >
                         +
@@ -160,36 +167,55 @@ const Cart = () => {
               </Box>
               <Box p={4} bg="white" textAlign="center">
                 <Text>
-                  Valor dos Produtos: <Text as="span" fontWeight="bold">R$ {total.toFixed(2)}</Text>
+                  Valor dos Produtos:{" "}
+                  <Text as="span" fontWeight="bold">
+                    R$ {total.toFixed(2)}
+                  </Text>
                 </Text>
                 <Text>
-                  Frete: <Text as="span" fontWeight="bold">R$ {frete.toFixed(2)}</Text>
+                  Frete:{" "}
+                  <Text as="span" fontWeight="bold">
+                    R$ {frete.toFixed(2)}
+                  </Text>
                 </Text>
                 <Text>
-                  Total a Prazo: <Text as="span" fontWeight="bold">R$ {(total + frete).toFixed(2)} </Text>
+                  Total a Prazo:{" "}
+                  <Text as="span" fontWeight="bold">
+                    R$ {(total + frete).toFixed(2)}{" "}
+                  </Text>
                 </Text>
                 <Text>
-                  Valor à vista no Pix: <Text as="span" fontWeight="bold">R$ {(total * 0.9).toFixed(2)}</Text>
+                  Valor à vista no Pix:{" "}
+                  <Text as="span" fontWeight="bold">
+                    R$ {(total * 0.9).toFixed(2)}
+                  </Text>
                 </Text>
                 <Flex justifyContent="center" mt={4}>
                   <BotaoComprar />
                 </Flex>
                 <NavLink to="/">
-                  <Button color='black'
-                    fontWeight='bold'
-                    borderRadius='md'
+                  <Button
+                    color="black"
+                    fontWeight="bold"
+                    borderRadius="md"
                     bg="yellow.200"
                     mt={2}
                     style={{ borderColor: "black" }}
                     _hover={{
-                      bgGradient: 'linear(to-r, yellow.500, orange.500)'
-                    }}>
+                      bgGradient: "linear(to-r, yellow.500, orange.500)",
+                    }}
+                  >
                     Continuar comprando
                   </Button>
                 </NavLink>
               </Box>
             </Box>
-            <Box borderWidth="1px" borderRadius="lg" overflow="hidden" mb="120px">
+            <Box
+              borderWidth="1px"
+              borderRadius="lg"
+              overflow="hidden"
+              mb="120px"
+            >
               <Box bg="white" p={4} fontWeight="bold" textAlign="center">
                 Entrega
               </Box>
@@ -198,13 +224,14 @@ const Cart = () => {
                   <Input placeholder="CEP" />
                   <Button
                     ml={2}
-                    fontWeight='bold'
-                    borderRadius='md'
+                    fontWeight="bold"
+                    borderRadius="md"
                     bg="blue.200"
                     style={{ borderColor: "black" }}
                     _hover={{
-                      bgGradient: 'linear(to-r, purple.500, blue.500)'
-                    }}>
+                      bgGradient: "linear(to-r, purple.500, blue.500)",
+                    }}
+                  >
                     OK
                   </Button>
                 </Flex>
