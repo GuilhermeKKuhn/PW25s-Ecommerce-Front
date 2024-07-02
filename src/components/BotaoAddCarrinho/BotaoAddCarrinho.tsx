@@ -6,9 +6,9 @@ const BotaoAddCarrinho = ({ produto }: { produto: IProduct }) => {
   const [noCarrinho, setNoCarrinho] = useState(false);
 
   useEffect(() => {
-    const itens = localStorage.getItem("itens");
-    if (itens) {
-      const parsedCartItems: IProduct[] = JSON.parse(itens);
+    const itensCarrinho = localStorage.getItem("itensCarrinho");
+    if (itensCarrinho) {
+      const parsedCartItems: IProduct[] = JSON.parse(itensCarrinho);
       const found = parsedCartItems.some((item) => item.id === produto.id);
       setNoCarrinho(found);
     }

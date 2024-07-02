@@ -21,7 +21,8 @@ export interface IUser {
 }
 
 export interface IProduct {
-  id?: number;
+  quantidade: string | number | readonly string[] | undefined;
+  id?: string | number | undefined;
   nome: string;
   descricao: string;
   preco: number;
