@@ -1,3 +1,13 @@
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import { IProduct } from "@/commons/interfaces";
 import { chakra } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
@@ -57,112 +67,156 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Carrinho</h2>
+    <Box pt={10} px={4} bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'>
+      <Heading textAlign="center" mb={10}>
+        Carrinho
+      </Heading>
       {carrinho.length === 0 ? (
-        <chakra.p textAlign="center">Seu carrinho está vazio</chakra.p>
+        <Text textAlign="center">Seu carrinho está vazio</Text>
       ) : (
-        <div className="row">
-          <div className="col-md-8">
+        <Grid templateColumns={{ base: "1fr", md: "2fr 1fr" }} gap={8}>
+          <Box>
             {carrinho.map((produto) => (
-              <div className="card mb-3" key={produto.id}>
-                <div className="card-header d-flex justify-content-between align-items-center">
-                  <span>{produto.nome}</span>
-                  <button
-                    className="btn btn-danger btn-sm"
+              <Box
+                key={produto.id}
+                borderWidth="1px"
+                borderRadius="lg"
+                overflow="hidden"
+                borderColor="gray.400"
+                bg="white"
+                mb={4}
+              >
+                <Flex
+                  justifyContent="space-between"
+                  alignItems="center"
+                  bg="white"
+                  p={4}
+                >
+                  <Text fontWeight="bold">{produto.nome}</Text>
+                  <Button
+                    fontWeight='bold'
+                    borderRadius='md'
+                    style={{ borderColor: "black" }}
+                    bg="red.500"
+                    _hover={{
+                      bgGradient: 'linear(to-r, red.500, gray.400)'
+                    }}
                     onClick={() => removerDoCarrinho(produto.id)}
                   >
                     Remover
-                  </button>
-                </div>
-                <div className="card-body">
-                  <div className="d-flex justify-content-between">
-                    <img
-                      src={produto.urlImage}
-                      alt={produto.nome}
-                      className="img-thumbnail"
-                      style={{
-                        width: "150px",
-                        height: "150px",
-                        objectFit: "cover",
-                      }}
-                    ></img>
-                    <div className="ml-3">
-                      <p>{produto.descricao}</p>
-                      <p>R$ {produto.preco}</p>
-                      <div className="input-group mb-3">
-                        <div className="input-group-prepend">
-                          <button
-                            className="btn btn-outline-secondary"
-                            type="button"
-                            onClick={() => decrementarQuantidade(produto.id)}
-                          >
-                            -
-                          </button>
-                        </div>
-                        <input
-                          type="number"
-                          className="form-control"
-                          value={produto.quantidade || 1}
-                          onChange={() => {}}
-                          min="1"
-                        />
-                        <div className="input-group-append">
-                          <button
-                            className="btn btn-outline-secondary"
-                            type="button"
-                            onClick={() => incrementarQuantidade(produto.id)}
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="col-md-4">
-            <div className="card">
-              <div className="card-header">Resumo</div>
-              <div className="card-body">
-                <p>Valor dos Produtos: R$ {total.toFixed(2)}</p>
-                <p>Frete: R$ {frete.toFixed(2)}</p>
-                <p>Total a prazo: R$ {(total + frete).toFixed(2)}</p>
-                <p>Valor à vista no Pix: R$ {(total * 0.9).toFixed(2)}</p>
-                <BotaoComprar></BotaoComprar>
-                <NavLink to={"/"}>
-                  <button className="btn btn-secondary btn-block">
-                    Continuar comprando
-                  </button>
-                </NavLink>
-              </div>
-            </div>
-            <div className="card mt-3">
-              <div className="card-header">Entrega</div>
-              <div className="card-body">
-                <div className="input-group mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="CEP"
+                  </Button>
+                </Flex>
+                <Flex p={4} alignItems="center">
+                  <Image
+                    src={produto.urlImage}
+                    alt={produto.nome}
+                    boxSize="150px"
+                    objectFit="cover"
+                    borderRadius="md"
                   />
-                  <div className="input-group-append">
-                    <button className="btn btn-outline-secondary" type="button">
-                      OK
-                    </button>
-                  </div>
-                </div>
-                <p>
-                  <a href="#">Não lembro meu CEP</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+                  <Box ml={4}>
+                    <Text>{produto.descricao}</Text>
+                    <Text fontWeight="bold">R$ {produto.preco}</Text>
+                    <Flex mt={2} alignItems="center">
+                      <Button
+                        size="sm"
+                        bg="transparent"
+                        _hover={{
+                          bgGradient: 'linear(to-r, red.500, gray.400)'
+                        }}
+                        onClick={() => decrementarQuantidade(produto.id)}
+                      >
+                        -
+                      </Button>
+                      <Input
+                        value={produto.quantidade || 1}
+                        readOnly
+                        size="sm"
+                        width="50px"
+                        border="none"
+                        fontWeight='bold'
+                        textAlign="center"
+                      />
+                      <Button
+                        size="sm"
+                        onClick={() => incrementarQuantidade(produto.id)}
+                        bg="transparent"
+                        _hover={{
+                          bgGradient: 'linear(to-r, green.500, gray.200)'
+                        }}
+                      >
+                        +
+                      </Button>
+                    </Flex>
+                  </Box>
+                </Flex>
+              </Box>
+            ))}
+          </Box>
+          <Box>
+            <Box borderWidth="1px" borderRadius="lg" overflow="hidden" mb={4}>
+              <Box bg="white" p={4} fontWeight="bold" textAlign="center">
+                Resumo
+              </Box>
+              <Box p={4} bg="white" textAlign="center">
+                <Text>
+                  Valor dos Produtos: <Text as="span" fontWeight="bold">R$ {total.toFixed(2)}</Text>
+                </Text>
+                <Text>
+                  Frete: <Text as="span" fontWeight="bold">R$ {frete.toFixed(2)}</Text>
+                </Text>
+                <Text>
+                  Total a Prazo: <Text as="span" fontWeight="bold">R$ {(total + frete).toFixed(2)} </Text>
+                </Text>
+                <Text>
+                  Valor à vista no Pix: <Text as="span" fontWeight="bold">R$ {(total * 0.9).toFixed(2)}</Text>
+                </Text>
+                <Flex justifyContent="center" mt={4}>
+                  <BotaoComprar />
+                </Flex>
+                <NavLink to="/">
+                  <Button color='black'
+                    fontWeight='bold'
+                    borderRadius='md'
+                    bg="yellow.200"
+                    mt={2}
+                    style={{ borderColor: "black" }}
+                    _hover={{
+                      bgGradient: 'linear(to-r, yellow.500, orange.500)'
+                    }}>
+                    Continuar comprando
+                  </Button>
+                </NavLink>
+              </Box>
+            </Box>
+            <Box borderWidth="1px" borderRadius="lg" overflow="hidden" mb="120px">
+              <Box bg="white" p={4} fontWeight="bold" textAlign="center">
+                Entrega
+              </Box>
+              <Box p={4} bg="white">
+                <Flex mb={3}>
+                  <Input placeholder="CEP" />
+                  <Button
+                    ml={2}
+                    fontWeight='bold'
+                    borderRadius='md'
+                    bg="blue.200"
+                    style={{ borderColor: "black" }}
+                    _hover={{
+                      bgGradient: 'linear(to-r, purple.500, blue.500)'
+                    }}>
+                    OK
+                  </Button>
+                </Flex>
+                <Text>
+                  <NavLink to="#">Não lembro meu CEP</NavLink>
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+        </Grid>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -17,13 +17,14 @@ const BotaoComprar = () => {
       onClick={verificarLogin}
       px={4}
       py={2}
-      bg="blue.500"
-      color="white"
-      fontWeight="bold"
-      borderRadius="lg"
-      _hover={{ bg: "blue.600" }}
-      _focus={{ bg: "blue.700" }}
-    >
+      color='black'
+      fontWeight='bold'
+      bg="green.200"
+      borderRadius='md'
+      style={{ borderColor: "black" }}
+      _hover={{
+        bgGradient: 'linear(to-r, green.500, yellow.500)'
+      }}>
       Finalizar Pedido
     </Button>
   );
