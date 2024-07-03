@@ -179,15 +179,15 @@ const Cart = () => {
                   </Text>
                 </Text>
                 <Text>
-                  Total a Prazo:{" "}
-                  <Text as="span" fontWeight="bold">
-                    R$ {(total + frete).toFixed(2)}{" "}
-                  </Text>
-                </Text>
-                <Text>
                   Valor à vista no Pix:{" "}
                   <Text as="span" fontWeight="bold">
                     R$ {(total * 0.9).toFixed(2)}
+                  </Text>
+                </Text>
+                <Text>
+                  Total:{" "}
+                  <Text as="span" fontWeight="bold">
+                    R$ {(total + frete).toFixed(2)}{" "}
                   </Text>
                 </Text>
                 <Flex justifyContent="center" mt={4}>

@@ -2,6 +2,7 @@ import { IPedido, IProduct, IitensPedido } from "@/commons/interfaces";
 import pedidosService from "@/services/PedidoService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, Alert, AlertIcon, Spinner } from "@chakra-ui/react";
 
 const finalizarPedido = () => {
   const navigate = useNavigate();
@@ -52,17 +53,19 @@ const finalizarPedido = () => {
   };
 
   return (
-    <div>
-      {pedidoConcluido ? (
-        <div className="alert alert-success" role="alert">
-          Pedido concluído! Você será redirecionado para a página inicial.
-        </div>
-      ) : (
-        <div className="alert alert-info" role="alert">
-          Processando pagamento...
-        </div>
-      )}
-    </div>
+    <Box mt={4}>
+    {pedidoConcluido ? (
+      <Alert status="success" variant="subtle">
+        <AlertIcon />
+        Pedido concluído! Você será redirecionado para a página inicial.
+      </Alert>
+    ) : (
+      <Alert status="info" variant="subtle">
+        <AlertIcon />
+        Processando pagamento... <Spinner size="sm" ml={2} />
+      </Alert>
+    )}
+  </Box>
   );
 };
 

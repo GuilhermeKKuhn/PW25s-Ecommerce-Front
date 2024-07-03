@@ -4,19 +4,19 @@ import { useEffect, useState } from "react";
 const Slider = () => {
   const slides = [
     {
-      img: "promocional.png",
+      img: "bannerPromocao.png",
     },
     {
-      img: "promocional.png",
+      img: "bannerPromocao.png",
     },
     {
-      img: "promocional.png",
+      img: "bannerPromocao.png",
     },
     {
-      img: "promocional.png",
+      img: "bannerPromocao.png",
     },
     {
-      img: "promocional.png",
+      img: "bannerPromocao.png",
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -68,6 +68,7 @@ const Slider = () => {
                 src={slide.img}
                 alt="carousel image"
                 boxSize="full"
+                h="350px"
                 objectFit="cover"
               />
             </Box>
