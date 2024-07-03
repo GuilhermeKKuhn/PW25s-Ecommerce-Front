@@ -136,7 +136,7 @@ const NavBar = () => {
                       borderRadius="full"
                       src={"do-utilizador.png"}
                       alt="Perfil"
-                      onClick={() => navigate("/perfil")}
+                      onClick={() => navigate("/HistoricoPedidos")}
                       cursor="pointer"
                     />
                   </Box>

@@ -57,4 +57,26 @@ export interface IitensPedido {
 
 export interface IProdutoCarrinho {
   id: number;
+  nome: string;
+  urlImage: string;
+  preco: number;
+  quantidade: number;
+}
+
+export interface IpedidoHistorico {
+  id?: number;
+  data: string;
+  itensPedido: IitensPedido[];
+  produto: IProduct;
+}
+
+export interface IDetalhesHistorico {
+  id?: number;
+  produto: IProduct;
+
+  quantidade: number;
+
+  data: string;
+
+  itensPedido: IitensPedido[];
 }
