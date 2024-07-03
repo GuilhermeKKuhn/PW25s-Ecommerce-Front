@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, Box, Spinner, Image } from "@chakra-ui/react";
+import { Text, Box, Spinner, Image, Flex } from "@chakra-ui/react";
 import pedidoService from "@/services/PedidoService";
 import { IDetalhesHistorico } from "@/commons/interfaces";
 
@@ -37,27 +37,27 @@ const DetalhesPedido: React.FC<Props> = ({ pedidoId }) => {
   }
 
   return (
-    <Box>
-      <Text fontSize="xl" mb={2}>
-        Itens do Pedido:
+    <Box mb={20}>
+      <Text fontSize="2xl" mb={4} textAlign="center" fontWeight="bold">
+        Itens do Pedido
       </Text>
-      <ul>
+      <ul  style={{ listStyleType: "none", padding: 0 }}>
         {detalhesPedido.itensPedido.map((item, idx) => (
           <li key={idx}>
-            <Box display="flex" alignItems="center" mb={2}>
+            <Flex alignItems="center" mb={4}>
               <Image
                 src={item.produto.urlImage}
                 alt={`Imagem de ${item.produto.nome}`}
-                boxSize="50px"
+                boxSize="80px"
                 objectFit="cover"
                 mr={4}
               />
               <Box>
-                <Text fontSize="lg">{item.produto.nome}</Text>
-                <Text fontSize="sm">Valor: R$ {item.produto.preco}</Text>
+                <Text fontSize="lg" mb={2}>{item.produto.nome}</Text>
+                <Text fontSize="md" mb={2}>Valor: R$ {item.produto.preco}</Text>
                 <Text>Quantidade: {item.quantidade}</Text>
               </Box>
-            </Box>
+            </Flex>
           </li>
         ))}
       </ul>

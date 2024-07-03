@@ -4,12 +4,14 @@ import categoriaService from "@/services/CategoriaService";
 import produtoService from "@/services/ProdutoService";
 import FiltroCategoria from "../FiltroCategoria/FiltroCategoria";
 import ListaProduto from "../ListaProduto/ListaProduto";
-import { Heading, Box, Flex } from "@chakra-ui/react";
+import { Heading, Box, Flex, Button} from "@chakra-ui/react";
 
 const CategoriaProduto = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [allProducts, setAllProducts] = useState<IProduct[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6; 
 
   useEffect(() => {
     fetchCategories();
@@ -29,7 +31,7 @@ const CategoriaProduto = () => {
     try {
       const response = await produtoService.findAll();
       setAllProducts(response);
-      setFilteredProducts(response); // puxa todos os produtos quando é carregado
+      setFilteredProducts(response); 
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
     }
@@ -46,7 +48,13 @@ const CategoriaProduto = () => {
         console.error("Erro ao buscar produtos por categoria:", error);
       }
     }
+    setCurrentPage(1); 
   };
+
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = Math.min(startIndex + pageSize, filteredProducts.length);
+
+  const hasNextPage = filteredProducts.length > endIndex;
 
   return (
     <>
@@ -54,16 +62,35 @@ const CategoriaProduto = () => {
         <Heading mb={10} textAlign="center">
           Produtos
         </Heading>
-        <Flex justifyContent="center" mb={4} >
+        <Flex justifyContent="center" mb={4}>
           <FiltroCategoria
             categories={categories}
             onCategoryClick={handleCategoryClick}
           />
-        </Flex >
-        <Flex justifyContent="center" >
+        </Flex>
+        <Flex justifyContent="center">
           <Box w="full" maxW="95%">
-            <ListaProduto produtos={filteredProducts} />
+            <ListaProduto
+              produtos={filteredProducts}
+              currentPage={currentPage}
+              pageSize={pageSize}
+            />
           </Box>
+        </Flex>
+        <Flex justifyContent="center" mt={4} pb={10}>
+          <Button
+            onClick={() => setCurrentPage(prevPage => Math.max(prevPage - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            Anterior
+          </Button>
+          <Button
+            onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+            ml={2}
+            disabled={!hasNextPage}
+          >
+            Próxima
+          </Button>
         </Flex>
       </Box>
     </>

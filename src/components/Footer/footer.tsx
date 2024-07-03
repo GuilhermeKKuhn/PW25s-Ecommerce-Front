@@ -16,8 +16,9 @@ const Footer = () => (
   <Box
     bg = "rgba(54,54,54)"
     color="white"
-    flex={1}
-
+    w="100%"
+    mt="auto"
+    
   >
     <Stack
       direction={{
@@ -27,6 +28,7 @@ const Footer = () => (
       w="full"
       justify="space-between"
       p={6}
+      
     >
       <Flex justify="center">
         <Image
