@@ -95,24 +95,41 @@ const NavBar = () => {
               }}
             >
               <NavLink to="/">
-                <Button variant="ghost" color="white" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
+                <Button
+                  variant="ghost"
+                  color="white"
+                  _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
+                >
                   Home
                 </Button>
               </NavLink>
               <NavLink to="/produto">
-                <Button variant="ghost" color="white" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
+                <Button
+                  variant="ghost"
+                  color="white"
+                  _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
+                >
                   Produtos
                 </Button>
               </NavLink>
               <NavLink to="/carrinho">
-                <Button variant="ghost" color="white" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
+                <Button
+                  variant="ghost"
+                  color="white"
+                  _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
+                >
                   <FaShoppingCart />
                 </Button>
               </NavLink>
               {data && isAuthenticated ? (
                 <>
-                  <Button variant="ghost" color="white" 
-                  _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>{data.username}</Button>
+                  <Button
+                    variant="ghost"
+                    color="white"
+                    _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
+                  >
+                    {data.username}
+                  </Button>
                   <Box boxSize="36px" borderRadius="full" bg="gray.200">
                     <Image
                       boxSize="36px"
@@ -125,36 +142,35 @@ const NavBar = () => {
                   </Box>
                 </>
               ) : (
-
                 <Flex as="nav" align="center" gap="4">
                   <NavLink to="/login">
-                      <Link
-                        display="inline-block"
-                        variant="ghost"
-                        color="white"
-                        w="full"
-                        _hover={{
-                          textDecoration: "none",
-                          borderBottom: "2px solid white",
-                        }}
-                      >
-                        Entrar
-                      </Link>
+                    <Link
+                      display="inline-block"
+                      variant="ghost"
+                      color="white"
+                      w="full"
+                      _hover={{
+                        textDecoration: "none",
+                        borderBottom: "2px solid white",
+                      }}
+                    >
+                      Entrar
+                    </Link>
                   </NavLink>
-                    /
+                  /
                   <NavLink to="/signup">
-                      <Link
-                        display="inline-block"
-                        variant="ghost"
-                        color="white"
-                        w="full"
-                        _hover={{
-                          textDecoration: "none",
-                          borderBottom: "2px solid white",
-                        }}
-                      >
-                        Cadastrar
-                      </Link>
+                    <Link
+                      display="inline-block"
+                      variant="ghost"
+                      color="white"
+                      w="full"
+                      _hover={{
+                        textDecoration: "none",
+                        borderBottom: "2px solid white",
+                      }}
+                    >
+                      Cadastrar
+                    </Link>
                   </NavLink>
                 </Flex>
               )}
@@ -220,7 +236,12 @@ const NavBar = () => {
                 </NavLink>
                 {isAuthenticated ? (
                   <>
-                    <Button variant="ghost" color="white" w="full" _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}>
+                    <Button
+                      variant="ghost"
+                      color="white"
+                      w="full"
+                      _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
+                    >
                       {"Nome do Usuário"}
                     </Button>
                     <Button
@@ -228,7 +249,7 @@ const NavBar = () => {
                       color="white"
                       w="full"
                       _hover={{ bg: "rgba(255, 255, 255, 0.1)" }}
-                      onClick={() => navigate("/perfil")}
+                      onClick={() => navigate("/HistoricoPedidos")}
                     >
                       Perfil
                     </Button>
@@ -253,7 +274,6 @@ const NavBar = () => {
                     >
                       Entrar
                     </Link>
-
                   </NavLink>
                 )}
               </VStack>

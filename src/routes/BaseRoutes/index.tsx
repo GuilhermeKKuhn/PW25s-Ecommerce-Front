@@ -7,6 +7,7 @@ import { ProductPage } from "@/pages/ProductPage";
 import { PaginaInternaProduto } from "@/pages/PaginaInternaProduto";
 import { Carrinho } from "@/pages/Carrinho";
 import FinalizarPedido from "@/components/FinalizarPedido/FinalizarPedido";
+import { HistoricoPedidos } from "@/pages/HistoricoPedidos";
 
 export function BaseRoutes() {
   return (
@@ -23,6 +24,7 @@ export function BaseRoutes() {
       {/*rotas privadas*/}
       <Route element={<AuthenticatedRoutes />}>
         <Route path="/FinalizarPedido" element={<FinalizarPedido />} />
+        <Route path="/HistoricoPedidos" element={<HistoricoPedidos />} />
       </Route>
     </Routes>
   );

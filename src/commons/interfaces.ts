@@ -43,3 +43,18 @@ export interface FiltroCategoriaProps {
 export interface IListaProdutosProps {
   produtos?: IProduct[];
 }
+
+export interface IPedido {
+  data: string;
+  itensPedido: IitensPedido[];
+}
+
+export interface IitensPedido {
+  id?: number;
+  produto: IProdutoCarrinho;
+  quantidade: number;
+}
+
+export interface IProdutoCarrinho {
+  id: number;
+}
